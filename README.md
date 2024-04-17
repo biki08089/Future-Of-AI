@@ -1,7 +1,7 @@
 <h1>Future od AI</h1>
 This website is related to "Artificial Intelligence".You will find content related to  The future uses of AI in different fields inside this website
 
-These below technologies are used to built this website.👇
+These below technologies are used to built this website.👇<br>
 [![My Skills](https://skillicons.dev/icons?i=aws,gcp,azure,react,vue,flutter&perline=3)](https://skillicons.dev)
 
 
