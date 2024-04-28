@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const saltrounds = 10;
 const verifyOtp = async (req, res) => {
   try {
-    const { name, email, password, otp } = req.body;
+    const { name, email,acountType, password, otp } = req.body;
 
     const checkOTP = await OTP.findOne({ otp });
     if (!checkOTP) {
@@ -26,7 +26,7 @@ const verifyOtp = async (req, res) => {
     let hashPassword;
     try {
       hashPassword = await bcrypt.hash(password, saltrounds);
-      console.log(hashPassword);
+      
     } catch (error) {
       console.log(error);
     }
@@ -34,6 +34,7 @@ const verifyOtp = async (req, res) => {
     const createUser = await userSchema.create({
       name,
       email,
+      acountType,
       password: hashPassword,
     });
     return res.status(200).json({

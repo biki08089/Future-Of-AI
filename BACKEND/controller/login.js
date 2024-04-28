@@ -1,6 +1,8 @@
 const userSchema = require("../model/userSchema");
 const wishListedItems = require("../model/wishListedItems");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+require("dotenv").config({ path: "./.env" });
 
 const login = async (req, res) => {
   try {
@@ -8,7 +10,7 @@ const login = async (req, res) => {
 
     //Check the user if registered or not.
     let existingUser = await userSchema.findOne({ email });
-
+    console.log(existingUser);
     if (!existingUser) {
       return res.status(200).json({
         success: false,
@@ -36,9 +38,22 @@ const login = async (req, res) => {
           massage: "Couldn't create wishlist data while login",
         });
       }
+    }
+
+    //Creating JWT Token
+    const payload = {
+      id: existingUser._id,
+      email: existingUser.email,
+      acountType: existingUser.acountType,
     };
+
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: "3h",
+    });
+
     return res.status(200).json({
       success: true,
+      token,
       massage: "Logged in successfully.",
     });
   } catch (error) {

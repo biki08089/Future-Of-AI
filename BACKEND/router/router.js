@@ -6,10 +6,14 @@ const verifyOtp = require("../controller/verifyOtp");
 const login = require("../controller/login");
 const updatePassword = require("../controller/updatePassword");
 const wishList = require("../controller/wishList");
+const {authorization, isAdmin, isRegular} = require("../middleware/authorization");
+const createPost = require("../controller/createPost");
 
 router.post("/signup/verify", sendAndSaveOTP);
 router.post("/signup/verify/email", verifyOtp);
 router.post("/login/success", login);
+router.post("/login/success/authorization",authorization,isAdmin,isRegular);
+router.post("/admin/createpost",createPost);
 router.post("/login/forgotPass/updatePass", updatePassword);
 router.post("/dashboard/wishlist", wishList);
 router.post("/dasboard", async (req, res) => {

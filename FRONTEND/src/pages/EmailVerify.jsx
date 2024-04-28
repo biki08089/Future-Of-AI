@@ -11,10 +11,10 @@ const EmailVerify = () => {
   const { register, handleSubmit } = useForm();
   let userData = useSelector((state) => state.menu.userData);
   const navigate=useNavigate();
-
   const user = {
     name: userData.fullname,
     email: userData.email,
+    acountType:userData.acountType,
     password: userData.password,
   };
 

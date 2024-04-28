@@ -76,7 +76,7 @@ const Signup = () => {
           <div data-aos="zoom-out">
             <form
               onSubmit={handleSubmit(userSignup)}
-              className="text-sm bg-cust-white h-[24rem] w-[18rem] px-4 py-4 rounded-xl mt-3 font-[arial] font-medium"
+              className="text-sm bg-cust-white h-[27rem] w-[18rem] px-4 py-4 rounded-xl mt-3 font-[arial] font-medium"
             >
               <label className="" htmlFor="fullname">
                 Full Name
@@ -104,6 +104,19 @@ const Signup = () => {
                 {...register("email")}
               />
               <br />
+              <div className="mb-3 mt-2">
+                <label htmlFor="type">Acount type: </label>
+                <select
+                  name="type"
+                  className="border rounded-lg p-[0.2rem]"
+                  required
+                  {...register("acountType")}
+                >
+                  <option value="Admin">Admin</option>
+                  <option value="Regular">Regular</option>
+                </select>
+              </div>
+
               <label htmlFor="password">Password</label>
               <br />
               <input
@@ -121,14 +134,14 @@ const Signup = () => {
                   onClick={() => {
                     passwordType();
                   }}
-                  className="absolute text-cust-lite-black w-[22px] h-[22px] top-[13.4rem] right-[1.4rem]"
+                  className="absolute text-cust-lite-black w-[22px] h-[22px] top-[16.2rem] right-[1.4rem]"
                 />
               ) : (
                 <IoMdEye
                   onClick={() => {
                     passwordType();
                   }}
-                  className="absolute text-cust-lite-black w-[22px] h-[22px] top-[13.4rem] right-[1.4rem]"
+                  className="absolute text-cust-lite-black w-[22px] h-[22px] top-[16.2rem] right-[1.4rem]"
                 />
               )}
               <br />
@@ -149,14 +162,14 @@ const Signup = () => {
                   onClick={() => {
                     passwordType2nd();
                   }}
-                  className="absolute text-cust-lite-black w-[22px] h-[22px] top-[18.2rem] right-[1.4rem]"
+                  className="absolute text-cust-lite-black w-[22px] h-[22px] top-[20.9rem] right-[1.4rem]"
                 />
               ) : (
                 <IoMdEye
                   onClick={() => {
                     passwordType2nd();
                   }}
-                  className="absolute text-cust-lite-black w-[22px] h-[22px] top-[18.2rem] right-[1.4rem]"
+                  className="absolute text-cust-lite-black w-[22px] h-[22px] top-[20.9rem] right-[1.4rem]"
                 />
               )}
               <br />

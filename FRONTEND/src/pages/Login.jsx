@@ -48,15 +48,32 @@ const Login = () => {
       body: JSON.stringify(data),
     });
     const response = await userLogin.json();
+    const token = response.token;
     const responseIs = response.success;
     if (responseIs) {
-      navigate("/login/dashboard");
-      toast.success(response.massage);
       localStorage.setItem("myValue", true);
+      const sendToken = await fetch(
+        `${VITE_BASE_URL}/login/success/authorization`,
+        {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const res = await sendToken.json();
+      if (res.acountType == "Regular") {
+        navigate("/login/dashboard");
+        toast.success("Successfully logged In.");
+      } else {
+        navigate("/login/admindashboard");
+        toast.success("Logged in as Admin.");
+      }
     } else {
       toast.error(response.massage);
       setLoading(false);
-
     }
   };
 
@@ -67,9 +84,9 @@ const Login = () => {
   return (
     <>
       {loading ? (
-       <div className="h-[100vh] bg-black flex justify-center items-center">
-       <LoadingPage />
-     </div>
+        <div className="h-[100vh] bg-black flex justify-center items-center">
+          <LoadingPage />
+        </div>
       ) : (
         <div className="h-[100vh]  flex flex-col justify-center items-center bg-black">
           <div data-aos="zoom-in" className="bg-black p-4 rounded-[50%]">

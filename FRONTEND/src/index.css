@@ -88,3 +88,7 @@ body {
     transform: rotate(1turn);
   }
 }
+
+textarea{
+  resize: none;
+}

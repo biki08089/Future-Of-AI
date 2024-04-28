@@ -9,6 +9,10 @@ const myschema=new mongoose.Schema({
         type:String,
         require:true,
     },
+    acountType:{
+        type:String,
+        require:true,
+    },
     password:{
         type:String,
         require:true,
