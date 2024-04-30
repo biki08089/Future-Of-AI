@@ -21,6 +21,7 @@ export default {
       "cust-lightgray":"#ede6e6",
       "cust-gray2nd":"#DDDDDD",
       "cust-lite-blue":"#075ff7",
+      "cust-EEEDEB":"#EEEDEB"
 
     },
     boxShadow: {

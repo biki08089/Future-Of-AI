@@ -6,6 +6,22 @@ const verifyOtp = async (req, res) => {
   try {
     const { name, email,acountType, password, otp } = req.body;
 
+   
+   //Validating name .. That first letter of first name & last name must be a capital letter.
+   let newName="";
+   const validation=()=>{
+      const nameArr=name.split(" ");
+       nameArr.forEach((item)=>{
+        const extractPartOfstr=item.length-1
+          const myString= item.substring(0, 1).toUpperCase()+item.substr(1,extractPartOfstr);
+          newName=newName+" "+myString;
+        })
+        
+      }
+      validation();
+      console.log(newName)
+
+
     const checkOTP = await OTP.findOne({ otp });
     if (!checkOTP) {
       return res.status(200).json({
@@ -32,7 +48,7 @@ const verifyOtp = async (req, res) => {
     }
     // create and save user inside DB
     const createUser = await userSchema.create({
-      name,
+      name:newName,
       email,
       acountType,
       password: hashPassword,

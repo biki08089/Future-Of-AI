@@ -1,16 +1,111 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { IoLogoClosedCaptioning } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+const VITE_BASE_URL = import.meta.env.VITE_BASE_URL;
+import toast from "react-hot-toast";
+import { MdDelete } from "react-icons/md";
+import GoPrev from "../components/GoPrev";
 
 const Admin = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
+  const [allPost, setPost] = useState([]);
+  const getPostData = async () => {
+    const data = {
+      email: localStorage.getItem("email"),
+    };
+    const getPost = await fetch(`${VITE_BASE_URL}/admin/getpost`, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    const response = await getPost.json();
+    console.log(response);
+    if (response.success) {
+      toast.success(response.massage);
+      setPost(response.post);
+    } else {
+      toast.error(response.massage);
+    }
+  };
+
+  useEffect(() => {
+    getPostData();
+  }, []);
+
   return (
-    <div className="h-[100vh] bg-cust-black text-cust-white ">
+    <div className="min-h-[100vh] bg-cust-black text-cust-white">
       <div className="bg-black flex justify-center flex-col items-center py-4">
         <h1 className="text-[1.2rem] pb-2">Welcome to Admin Page.</h1>
-        <button data-aos="zoom-in" onClick={()=>{navigate("/admindashboard/createpost")}} className="text-[1rem] border px-5 py-1 rounded-lg">Create Post</button>
+        <button
+          data-aos="zoom-in"
+          onClick={() => {
+            navigate("/admindashboard/createpost");
+          }}
+          className="text-[1rem] border px-5 py-1 rounded-lg"
+        >
+          Create Post
+        </button>
       </div>
-      <div className="h-[100%] flex justify-center items-center">
-        <p className="text-[1.2rem]">You haven't create anything !</p>
+      <GoPrev></GoPrev>
+      <div className=" py-[2rem] flex justify-center items-center ">
+        {allPost.length == 0 ? (
+          <div className="h-[100vh] flex justify-center items-center">
+            <p className="text-[1.2rem]">You haven't created anything !</p>
+          </div>
+        ) : (
+          <div className="">
+            <h1 className="py-2 px-4 bg-black w-[7.5rem] text-center rounded-lg animate-bounceb text-dark-green">
+              Your Posts
+            </h1>
+            {allPost.map((eachPost) => {
+              return (
+                <div
+                  key={eachPost._id}
+                  className="max-h-[33rem] w-[17rem] px-[1rem] py-[1rem] rounded-xl bg-cust-white my-6"
+                >
+                  <div className="bg-cust-EEEDEB shadow-3xl rounded-lg h-[11rem] flex justify-center items-center ">
+                    <img
+                      src={eachPost.secureImgURL}
+                      alt=" No Image"
+                      className=" rounded-lg h-[9rem]"
+                    />
+                  </div>
+
+                  <h2 className="mt-3 text-black font-bold text-[1.3rem]">
+                    {eachPost.title}
+                  </h2>
+                  <h2 className="text-dark-green font-bold text-[1rem]">
+                    Catagory: {eachPost.catagory}
+                  </h2>
+                  <h2 className="text-cust-lite-black font-bold text-[0.8rem]">
+                    Created By: {eachPost.author}
+                  </h2>
+
+                  <p className="text-black mt-2 overflow-x-hidden ">
+                    {(
+                      eachPost.maincontent.substring(0, 1).toUpperCase() +
+                      eachPost.maincontent.substr(
+                        1,
+                        eachPost.maincontent.length - 1
+                      )
+                    ).substring(0, 150)}
+                    ...
+                  </p>
+                  <div className="flex justify-between items-center mt-3">
+                    <button className="text-cust-white py-2 px-3 bg-black rounded-lg mt-2 ">
+                      Read More
+                    </button>
+                    <MdDelete className="h-[1.8rem] w-[1.8rem] text-black"/>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );

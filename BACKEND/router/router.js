@@ -8,7 +8,7 @@ const updatePassword = require("../controller/updatePassword");
 const wishList = require("../controller/wishList");
 const {authorization, isAdmin, isRegular} = require("../middleware/authorization");
 const createPost = require("../controller/createPost");
-
+const myPOST=require("../model/post");
 router.post("/signup/verify", sendAndSaveOTP);
 router.post("/signup/verify/email", verifyOtp);
 router.post("/login/success", login);
@@ -40,4 +40,28 @@ router.post("/dasboard", async (req, res) => {
     });
   }
 });
+
+router.post("/admin/getpost",async(req,res)=>{
+     try {
+      const {email}=req.body;
+      
+      //Find all the post related to the above email id, that we have in our req body..
+      
+      const allPost=await myPOST.find({email});
+      console.log(allPost)
+
+      return res.status(200).json({
+        success:true,
+        post:allPost,
+        massage:"Fetched all posts successfully"
+      })
+
+     } catch (error) {
+      return res.status(500).json({
+        success:false,
+        massage:"Couldn't fetch posts",
+      })
+     }
+})
+
 module.exports = router;

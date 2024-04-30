@@ -1,12 +1,26 @@
 const cloudinary = require("cloudinary").v2;
 const myPOST = require("../model/post");
 const userSchema = require("../model/userSchema");
+const wishListedItems = require("../model/wishListedItems");
 
 const createPost = async (req, res) => {
   try {
     const file = req.files.uploadfile;
     const { title, catagory, maincontent, email } = req.body;
 
+     let newTitle="";
+
+     const validation=()=>{
+        const titleArr=title.split(" ");
+         titleArr.forEach((item)=>{
+          const extractPartOfstr=item.length-1
+            const myString= item.substring(0, 1).toUpperCase()+item.substr(1,extractPartOfstr);
+            newTitle=newTitle+" "+myString;
+          })
+          
+        }
+        validation();
+      
      if(maincontent.length<150){
       return res.status(200).json({
         success:false,
@@ -67,7 +81,7 @@ const createPost = async (req, res) => {
     const createPostEntry = await myPOST.create({
       email,
       author,
-      title,
+      title:newTitle,
       catagory,
       secureImgURL,
       maincontent,

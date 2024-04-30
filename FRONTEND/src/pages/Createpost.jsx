@@ -2,6 +2,10 @@ import React from "react";
 import { useForm } from "react-hook-form";
 const VITE_BASE_URL = import.meta.env.VITE_BASE_URL;
 import toast from "react-hot-toast";
+import bookmark from "../images/logo/bookmark.png";
+import GoPrev from "../components/GoPrev";
+
+
 
 const Createpost = () => {
   // const { register, handleSubmit } = useForm();
@@ -32,11 +36,28 @@ const Createpost = () => {
 
   return (
     <div>
-      <div className="h-[100vh] bg-black flex justify-center items-center">
+      <GoPrev></GoPrev>
+      <div className="h-[100vh] flex flex-col justify-center items-center bg-black">
+
+        <div data-aos="zoom-in" className="flex flex-col justify-center items-center mb-7" >
+          <img
+            src={bookmark}
+            className="h-[5rem] w-[5rem] mb-2"
+            alt="No image"
+          />
+          <p className="text-cust-white">Let the people know your thoughts.</p>
+        </div>
         <div
           data-aos="zoom-in"
-          className="max-h-[33rem] w-[18rem] p-3 bg-cust-white rounded-xl"
+          className="max-h-[40rem] w-[18rem] p-3 bg-cust-white rounded-xl"
         >
+          <h1
+            data-aos="zoom-in"
+            className="text-center text-[1.5rem] font-bold mb-4 text-dark-green"
+          >
+            Create A Post
+          </h1>
+
           <form onSubmit={createPost} action="">
             <label className="font-bold" htmlFor="title">
               Enter your title
@@ -57,15 +78,21 @@ const Createpost = () => {
               name="catagory"
               id=""
             >
-              <option value="Select catagory" selected>
-                Catagory
-              </option>
               <option value="Health">Health</option>
               <option value="Autonomous">Autonomous</option>
               <option value="EthicalUse">EthicalUse</option>
               <option value="Trading">Trading</option>
               <option value="Climate">Climate</option>
               <option value="Education">Education</option>
+              <option value="Transportation/Travel">
+                Transportation/Travel
+              </option>
+              <option value="Agriculture">Agriculture</option>
+              <option value="Finance">Finance</option>
+              <option value="Law&Order">Law&Order</option>
+              <option value="Politics">Politics</option>
+              <option value="Technology/Science">Technology/Science</option>
+              <option value="Coding">Coding</option>
             </select>
             <br />
             <label className="font-bold" htmlFor="uploadfile">
