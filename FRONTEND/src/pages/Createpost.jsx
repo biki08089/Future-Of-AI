@@ -49,7 +49,7 @@ const Createpost = () => {
         </div>
         <div
           data-aos="zoom-in"
-          className="max-h-[40rem] w-[18rem] p-3 bg-cust-white rounded-xl"
+          className="max-h-[40rem] mx-[2rem] p-3 bg-cust-white rounded-xl"
         >
           <h1
             data-aos="zoom-in"
@@ -109,7 +109,7 @@ const Createpost = () => {
               Your content
             </label>
             <textarea
-              className="border rounded-lg p-2 text-[15px]"
+              className="border rounded-lg p-2 text-[15px] mx-auto"
               name="maincontent"
               id=""
               cols="30"
