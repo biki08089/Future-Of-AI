@@ -9,6 +9,9 @@ const wishList = require("../controller/wishList");
 const {authorization, isAdmin, isRegular} = require("../middleware/authorization");
 const createPost = require("../controller/createPost");
 const myPOST=require("../model/post");
+
+
+
 router.post("/signup/verify", sendAndSaveOTP);
 router.post("/signup/verify/email", verifyOtp);
 router.post("/login/success", login);
