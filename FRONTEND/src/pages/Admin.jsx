@@ -5,9 +5,13 @@ const VITE_BASE_URL = import.meta.env.VITE_BASE_URL;
 import toast from "react-hot-toast";
 import { MdDelete } from "react-icons/md";
 import GoPrev from "../components/GoPrev";
+import { useDispatch } from "react-redux";
+import { readPostOnClick } from "../redux/firstSlice/firstSlice";
 
 const Admin = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [allPost, setPost] = useState([]);
   const getPostData = async () => {
     const data = {
@@ -23,13 +27,43 @@ const Admin = () => {
     });
 
     const response = await getPost.json();
-    console.log(response);
     if (response.success) {
       toast.success(response.massage);
       setPost(response.post);
     } else {
       toast.error(response.massage);
     }
+  };
+
+  const deletePost = async (event) => {
+    const id = event.target.parentElement.parentElement.id;
+    const uniqueID = {
+      id: id,
+    };
+
+    const deletePost = await fetch(`${VITE_BASE_URL}/admin/deletepost`, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(uniqueID),
+    });
+
+    const response = await deletePost.json();
+    const filteredPost = allPost.filter((eachPost) => {
+      return eachPost._id !== response.post._id;
+    });
+    setPost(filteredPost);
+  };
+
+  const readMore = (event) => {
+    navigate("/admindashboard/reviewpost");
+    const filteredPost = event.target.parentElement.id;
+    const finalPost = allPost.filter((eachPost) => {
+      return eachPost._id == filteredPost;
+    });
+    dispatch(readPostOnClick(finalPost))
   };
 
   useEffect(() => {
@@ -64,8 +98,9 @@ const Admin = () => {
             {allPost.map((eachPost) => {
               return (
                 <div
-                  key={eachPost._id}
+                  id={eachPost._id}
                   className="max-h-[33rem] w-[17rem] px-[1rem] py-[1rem] rounded-xl bg-cust-white my-6"
+                  key={eachPost._id}
                 >
                   <div className="bg-cust-EEEDEB shadow-3xl rounded-lg h-[11rem] flex justify-center items-center ">
                     <img
@@ -95,11 +130,20 @@ const Admin = () => {
                     ).substring(0, 150)}
                     ...
                   </p>
-                  <div className="flex justify-between items-center mt-3">
-                    <button className="text-cust-white py-2 px-3 bg-black rounded-lg mt-2 ">
+                  <div
+                    id={eachPost._id}
+                    className="flex justify-between items-center mt-3"
+                  >
+                    <button
+                      onClick={readMore}
+                      className="text-cust-white py-2 px-3 bg-black rounded-lg mt-2 "
+                    >
                       Read More
                     </button>
-                    <MdDelete className="h-[1.8rem] w-[1.8rem] text-black"/>
+                    <MdDelete
+                      onClick={deletePost}
+                      className="h-[1.8rem] w-[1.8rem] text-black"
+                    />
                   </div>
                 </div>
               );
@@ -112,4 +156,3 @@ const Admin = () => {
 };
 
 export default Admin;
-

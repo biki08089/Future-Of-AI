@@ -9,6 +9,7 @@ const wishList = require("../controller/wishList");
 const {authorization, isAdmin, isRegular} = require("../middleware/authorization");
 const createPost = require("../controller/createPost");
 const myPOST=require("../model/post");
+const deletePost=require("../controller/deletePost");
 
 
 
@@ -17,6 +18,7 @@ router.post("/signup/verify/email", verifyOtp);
 router.post("/login/success", login);
 router.post("/login/success/authorization",authorization,isAdmin,isRegular);
 router.post("/admin/createpost",createPost);
+router.post("/admin/deletepost",deletePost);
 router.post("/login/forgotPass/updatePass", updatePassword);
 router.post("/dashboard/wishlist", wishList);
 router.post("/dasboard", async (req, res) => {
@@ -51,7 +53,6 @@ router.post("/admin/getpost",async(req,res)=>{
       //Find all the post related to the above email id, that we have in our req body..
       
       const allPost=await myPOST.find({email});
-      console.log(allPost)
 
       return res.status(200).json({
         success:true,

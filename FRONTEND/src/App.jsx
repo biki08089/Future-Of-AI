@@ -20,6 +20,7 @@ import Whishlist from "./pages/Whishlist";
 import MainContainer from "./pages/MainContainer";
 import Admin from "./pages/Admin";
 import Createpost from "./pages/Createpost";
+import AdminReview from "./pages/AdminReview";
 
 function App() {
   const [counter, setCounter] = useState(0);
@@ -46,6 +47,7 @@ function App() {
             <Route path="/login/dashboard" element={<Dashboard />} />
             <Route path="/login/admindashboard" element={<Admin/>}/>
             <Route path="/admindashboard/createpost" element={<Createpost/>}/>
+            <Route path="/admindashboard/reviewpost" element={<AdminReview/>}/>
             <Route path="/dashboard/content" element={<Content />}></Route>
             <Route path="/dashboard/wishlist" element={<Whishlist />}></Route>
             <Route path="/login/forgotPass" element={<UpdatePassword />} />

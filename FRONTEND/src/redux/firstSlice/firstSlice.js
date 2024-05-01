@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   value: 0,
   userData: {},
+  readPost:[],
   loginStatus: "Login",
   signupStatus: false,
   passType:false,
@@ -13,6 +14,10 @@ const menuSlice = createSlice({
   name: "menu",
   initialState,
   reducers: {
+    readPostOnClick:(state,action)=>{
+      state.readPost=action.payload
+    },
+
     changePasstype:(state)=>{
        if(state.passType){
         state.passType=false;
@@ -49,6 +54,6 @@ const menuSlice = createSlice({
   },
 });
 
-export const {changePasstype,changePasstype2nd, incAnddec, updateuserData, userStatusLogin, userStatusLogout ,userSignUp,userSignUpfalse} =
+export const {changePasstype,changePasstype2nd, incAnddec, updateuserData, userStatusLogin, userStatusLogout ,userSignUp,userSignUpfalse, readPostOnClick} =
   menuSlice.actions;
 export default menuSlice.reducer;
