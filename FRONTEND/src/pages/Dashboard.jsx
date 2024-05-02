@@ -79,6 +79,7 @@ const Dashboard = () => {
     //Getting response from backend with wishlisted items as array....
     const res = await sendlikedData.json();
     const itemsArr = res.data;
+    console.log(itemsArr)
     dispatch(cartItem(itemsArr.length));
 
     // Below extracting the value of ID from each element present inside that array...
