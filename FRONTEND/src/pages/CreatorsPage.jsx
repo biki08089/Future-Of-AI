@@ -25,7 +25,7 @@ const CreatorsPage = () => {
         <div className=" py-[2rem] flex justify-center items-center ">
           {allPost.length == 0 ? (
             <div className="h-[100vh] flex justify-center items-center">
-              <p className="text-[1.2rem]">You haven't created anything !</p>
+              <p className="text-[1.2rem] text-cust-white">You haven't created anything !</p>
             </div>
           ) : (
             <div className="">
