@@ -6,19 +6,21 @@ const verifyOtp = require("../controller/verifyOtp");
 const login = require("../controller/login");
 const updatePassword = require("../controller/updatePassword");
 const wishList = require("../controller/wishList");
-const {authorization, isAdmin, isRegular} = require("../middleware/authorization");
+const {
+  authorization,
+  isAdmin,
+  isRegular,
+} = require("../middleware/authorization");
 const createPost = require("../controller/createPost");
-const myPOST=require("../model/post");
-const deletePost=require("../controller/deletePost");
-
-
+const myPOST = require("../model/post");
+const deletePost = require("../controller/deletePost");
 
 router.post("/signup/verify", sendAndSaveOTP);
 router.post("/signup/verify/email", verifyOtp);
 router.post("/login/success", login);
-router.post("/login/success/authorization",authorization,isAdmin,isRegular);
-router.post("/admin/createpost",createPost);
-router.post("/admin/deletepost",deletePost);
+router.post("/login/success/authorization", authorization, isAdmin, isRegular);
+router.post("/admin/createpost", createPost);
+router.post("/admin/deletepost", deletePost);
 router.post("/login/forgotPass/updatePass", updatePassword);
 router.post("/dashboard/wishlist", wishList);
 router.post("/dasboard", async (req, res) => {
@@ -29,7 +31,7 @@ router.post("/dasboard", async (req, res) => {
       .find({ email })
       .populate("items")
       .exec();
-   
+
     if (wishlistedData) {
       res.status(200).json({
         success: true,
@@ -46,26 +48,41 @@ router.post("/dasboard", async (req, res) => {
   }
 });
 
-router.post("/admin/getpost",async(req,res)=>{
-     try {
-      const {email}=req.body;
-      
-      //Find all the post related to the above email id, that we have in our req body..
-      
-      const allPost=await myPOST.find({email});
+router.post("/admin/getpost", async (req, res) => {
+  try {
+    const { email } = req.body;
 
-      return res.status(200).json({
-        success:true,
-        post:allPost,
-        massage:"Fetched all posts successfully"
-      })
+    //Find all the post related to the above email id, that we have in our req body..
 
-     } catch (error) {
-      return res.status(500).json({
-        success:false,
-        massage:"Couldn't fetch posts",
-      })
-     }
-})
+    const allPost = await myPOST.find({ email });
+
+    return res.status(200).json({
+      success: true,
+      post: allPost,
+      massage: "Fetched all posts successfully",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      massage: "Couldn't fetch posts",
+    });
+  }
+});
+
+router.get("/login/dashboard/allpost", async (req, res) => {
+  try {
+    const allpost = await myPOST.find();
+    return res.status(200).json({
+      success: true,
+      post: allpost,
+      massage: "Posts are loaded successfully",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      massage: "Unable to Load",
+    });
+  }
+});
 
 module.exports = router;

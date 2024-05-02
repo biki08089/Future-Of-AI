@@ -21,6 +21,7 @@ import MainContainer from "./pages/MainContainer";
 import Admin from "./pages/Admin";
 import Createpost from "./pages/Createpost";
 import AdminReview from "./pages/AdminReview";
+import CreatorsPage from "./pages/CreatorsPage";
 
 function App() {
   const [counter, setCounter] = useState(0);
@@ -45,6 +46,7 @@ function App() {
             <Route index element={<Body />} />
             <Route path="/login" element={<Login />} />
             <Route path="/login/dashboard" element={<Dashboard />} />
+            <Route path="/login/creatorspage" element={<CreatorsPage/>}/>
             <Route path="/login/admindashboard" element={<Admin/>}/>
             <Route path="/admindashboard/createpost" element={<Createpost/>}/>
             <Route path="/admindashboard/reviewpost" element={<AdminReview/>}/>
