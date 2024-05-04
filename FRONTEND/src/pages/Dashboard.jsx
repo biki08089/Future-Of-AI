@@ -78,8 +78,11 @@ const Dashboard = () => {
 
     //Getting response from backend with wishlisted items as array....
     const res = await sendlikedData.json();
-    const itemsArr = res.data;
-    console.log(itemsArr)
+    // console.log(res)
+    const itemsArr = res.data.items.concat(
+      res.data.itemsLikedfromCreatorPage
+    );
+    
     dispatch(cartItem(itemsArr.length));
 
     // Below extracting the value of ID from each element present inside that array...
@@ -107,7 +110,9 @@ const Dashboard = () => {
       body: JSON.stringify(data),
     });
     const res = await getData.json();
-    const items = res.data[0].items;
+    const items =res.data[0].items.concat(
+      res.data[0].itemsLikedfromCreatorPage
+    );
     dispatch(cartItem(items.length));
     localStorage.setItem("totalCartItems", items.length);
 

@@ -14,6 +14,7 @@ const {
 const createPost = require("../controller/createPost");
 const myPOST = require("../model/post");
 const deletePost = require("../controller/deletePost");
+const likeAndRead = require("../controller/likeAndRead");
 
 router.post("/signup/verify", sendAndSaveOTP);
 router.post("/signup/verify/email", verifyOtp);
@@ -23,13 +24,14 @@ router.post("/admin/createpost", createPost);
 router.post("/admin/deletepost", deletePost);
 router.post("/login/forgotPass/updatePass", updatePassword);
 router.post("/dashboard/wishlist", wishList);
+router.post("/like_read",likeAndRead);
 router.post("/dasboard", async (req, res) => {
   try {
     const { email } = req.body;
 
     const wishlistedData = await wishListedItems
       .find({ email })
-      .populate("items")
+      .populate("items").populate("itemsLikedfromCreatorPage")
       .exec();
 
     if (wishlistedData) {

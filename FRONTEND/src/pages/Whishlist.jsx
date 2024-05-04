@@ -17,9 +17,16 @@ import { LoadingPage } from "./LoadingPage";
 const Whishlist = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [likeData, setLikedata] = useState([]);
+  // const [myData,setMydata]=useState([]);
+
+  let newArr = [];
+  likeData.forEach((element) => {
+    newArr.push(element.id);
+  });
+  console.log(newArr);
 
   const getValueFromLocal = localStorage.getItem("myValue");
-
   if (getValueFromLocal === "false") {
     navigate("/login");
   }
@@ -27,7 +34,8 @@ const Whishlist = () => {
   const myData = useSelector((state) => {
     return state.myAPI.wishlistedArr;
   });
-
+  // setMydata(wishlistData)
+  // console.log(myData);
   const loginStatus = () => {
     dispatch(userStatusLogout());
     dispatch(userSignUp());
@@ -46,24 +54,35 @@ const Whishlist = () => {
     const filteredArr = myData.filter((each) => {
       return each.id == event.target.parentElement.id;
     });
+    console.log(filteredArr);
 
-    const data = {
+    let URL;
+  
+    if (newArr.includes(filteredArr[0].id)) {
+      URL = `${VITE_BASE_URL}/like_read`;
+    } else {
+      URL = `${VITE_BASE_URL}/dashboard/wishlist`;
+    }
+
+    const APIdata = {
       email: localStorage.getItem("email"),
       value: event.target.parentElement.getAttribute("name"),
       title: filteredArr[0].title,
+      id: filteredArr[0].id,
     };
 
-    const sendData = await fetch(`${VITE_BASE_URL}/dashboard/wishlist`, {
+    const sendData = await fetch(URL, {
       method: "POST",
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(APIdata),
     });
 
     const res = await sendData.json();
-    window.location.reload();
+    getDatafromDB();
+
   };
 
   const getDatafromDB = async () => {
@@ -80,10 +99,14 @@ const Whishlist = () => {
       body: JSON.stringify(data),
     });
     const res = await getData.json();
-    const items = res.data[0].items;
+    console.log(res);
+    const items = res.data[0].items.concat(
+      res.data[0].itemsLikedfromCreatorPage
+    );
     dispatch(myWishlist(items));
     dispatch(cartItem(items.length));
     localStorage.setItem("totalCartItems", items.length);
+    setLikedata(res.data[0].itemsLikedfromCreatorPage);
   };
 
   useEffect(() => {
@@ -112,7 +135,7 @@ const Whishlist = () => {
                   className="w-[17rem] max-h-[31rem] sm:m-3 bg-cust-bg shadow-3xl my-5 py-4 px-3 rounded-[0.8rem]"
                 >
                   <img
-                    className="rounded-lg mb-3"
+                    className="rounded-lg mb-3 mx-auto h-[11rem]"
                     src={eachObj.image}
                     alt="../public/AI-IMG.webp"
                   />
@@ -127,7 +150,6 @@ const Whishlist = () => {
                       <button
                         id={eachObj.id}
                         onClick={readMore}
-                      
                         className=" h-[2.3rem] w-[6rem] rounded-lg mt-2 bg-dark-green font-semibold text-cust-bg"
                       >
                         Read More

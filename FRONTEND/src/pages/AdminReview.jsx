@@ -6,7 +6,7 @@ const AdminReview = () => {
   const post = useSelector((state) => {
     return state.menu.readPost;
   });
-  console.log(post);
+  // console.log(post);
   return (
     <div className="h-[100vh] bg-black text-cust-white overflow-y-scroll">
       <GoPrev />

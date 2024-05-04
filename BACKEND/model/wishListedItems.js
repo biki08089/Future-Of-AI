@@ -9,6 +9,14 @@ const wishlistedItemsSchema=new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"wishList",
     }],
+    itemsLikedfromCreatorPage:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"likes",
+    }],
+    itemsReadfromCreatorPage:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"read",
+    }],
 });
 
 module.exports=mongoose.model("ItemsWishListed",wishlistedItemsSchema);

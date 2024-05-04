@@ -9,17 +9,85 @@ import { readPostOnClick } from "../redux/firstSlice/firstSlice";
 import { useNavigate } from "react-router-dom";
 import { FcLike } from "react-icons/fc";
 import { FcLikePlaceholder } from "react-icons/fc";
+import { cartItem } from "../redux/firstSlice/myapiSlice";
 
 const CreatorsPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [allPost, setAllpost] = useState([]);
-  console.log("I am loading");
+  const [likedArr, setLikedArr] = useState([]);
+  console.log(likedArr);
   console.log(allPost);
+
   const loadPost = async () => {
     const getAllPost = await fetch(`${VITE_BASE_URL}/login/dashboard/allpost`);
     const response = await getAllPost.json({});
     setAllpost(response.post);
+  };
+
+  //This function is a reusable function which will run for both readmore button click and like button click
+
+  const sendLikeAndReadmoreData = async (data, value) => {
+    const info = {
+      id: data._id,
+      email: localStorage.getItem("email"),
+      title: data.title,
+      tag: data.catagory,
+      image: data.secureImgURL,
+      description: data.maincontent,
+      author: data.author,
+      value: value,
+    };
+
+    const sendDatatoBackend = await fetch(`${VITE_BASE_URL}/like_read`, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(info),
+    });
+
+    const response = await sendDatatoBackend.json();
+    const responseData = response.userData.items.concat(
+      response.userData.itemsLikedfromCreatorPage
+    );
+    console.log(response);
+
+    let newArr = [];
+    responseData.forEach((element) => {
+      newArr.push(element.id);
+    });
+    setLikedArr(newArr);
+  };
+
+  /*This function will send a post request with email id and will give us Itemswishlisted db's related data in 
+  when the page rendered for the first time or refreshed..*/
+
+  const getDatafromDB = async () => {
+    const myemail = localStorage.getItem("email");
+    const data = {
+      email: myemail,
+    };
+    const getData = await fetch(`${VITE_BASE_URL}/dasboard`, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const res = await getData.json();
+    console.log(res);
+    const newArrOflikes = res.data[0].items.concat(
+      res.data[0].itemsLikedfromCreatorPage
+    );
+
+    let newArr = [];
+    newArrOflikes.forEach((element) => {
+      newArr.push(element.id);
+    });
+    setLikedArr(newArr);
   };
 
   const readMore = (event) => {
@@ -27,10 +95,24 @@ const CreatorsPage = () => {
     const filteredPost = allPost.filter((eachPost) => {
       return eachPost._id == event.target.parentElement.id;
     });
+    const value = event.target.parentElement.getAttribute("name");
+    const data = filteredPost[0];
     dispatch(readPostOnClick(filteredPost));
+
+    sendLikeAndReadmoreData(data, value);
+  };
+
+  const sendLikedData = (event) => {
+    const filteredData = allPost.filter((eachPost) => {
+      return eachPost._id == event.target.parentElement.id;
+    });
+    const value = event.target.parentElement.getAttribute("name");
+    const data = filteredData[0];
+    sendLikeAndReadmoreData(data, value);
   };
 
   useEffect(() => {
+    getDatafromDB();
     loadPost();
   }, []);
   return (
@@ -85,17 +167,44 @@ const CreatorsPage = () => {
                       ).substring(0, 150)}
                       ...
                     </p>
-                    <div
-                      id={eachPost._id}
-                      className="flex justify-between items-center mt-3"
-                    >
-                      <button
-                        onClick={readMore}
-                        className="text-cust-white py-2 px-3 bg-black rounded-lg mt-2 "
-                      >
-                        Read More
-                      </button>
-                      <MdDelete className="h-[1.8rem] w-[1.8rem] text-black" />
+                    <div className="flex justify-between items-center mt-3">
+                      <div id={eachPost._id} name="readMoreButton">
+                        <button
+                          onClick={readMore}
+                          className="text-cust-white py-2 px-3 bg-black rounded-lg mt-2 "
+                        >
+                          Read More
+                        </button>
+                      </div>
+                      {/* <div id={eachPost._id} name="add">
+                        <MdDelete
+                          id={eachPost._id}
+                          name="add"
+                          onClick={sendLikedData}
+                          className="h-[1.8rem] w-[1.8rem] text-black"
+                        />
+                      </div> */}
+                      {likedArr.includes(eachPost._id) ? (
+                        <div id={eachPost._id} name="remove" className="h-[3rem]">
+                          <FcLike
+                            id={eachPost._id}
+                            name="remove"
+                            onClick={sendLikedData}
+                            className="h-[1.9rem] mb-1 mx-auto w-[1.9rem] rounded-[50%] bg-cust-gray2nd p-1"
+                          />
+                          <p className="text-[12px]">Remove Blog</p>
+                        </div>
+                      ) : (
+                        <div id={eachPost._id} name="add" className="h-[3rem]">
+                          <FcLikePlaceholder
+                            id={eachPost._id}
+                            name="add"
+                            onClick={sendLikedData}
+                            className="h-[1.9rem] mb-1 mx-auto w-[1.9rem] rounded-[50%] bg-black p-1"
+                          />
+                          <p className="text-[12px]">Add to wishlist</p>
+                        </div>
+                      )}
                     </div>
                   </div>
                 );

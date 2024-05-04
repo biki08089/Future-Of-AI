@@ -34,13 +34,13 @@ const wishList = async (req, res) => {
           { $pull: { items: createWishList._id } },
           { new: true }
         )
-        .populate("items")
+        .populate("items").populate("itemsLikedfromCreatorPage")
         .exec();
     }
 
     res.status(200).json({
       success: true,
-      data: wishListedItems.items,
+      data: wishListedItems,
       massage: "Data has been created successfully.",
     });
   } catch (error) {
