@@ -7,12 +7,28 @@ import { MdDelete } from "react-icons/md";
 import GoPrev from "../components/GoPrev";
 import { useDispatch } from "react-redux";
 import { readPostOnClick } from "../redux/firstSlice/firstSlice";
+import { userStatusLogout, userSignUp } from "../redux/firstSlice/firstSlice";
+
 
 const Admin = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const [allPost, setPost] = useState([]);
+
+  const getValueFromLocal = localStorage.getItem("myValue");
+
+  if (getValueFromLocal === "false") {
+    navigate("/login");
+  } 
+  
+
+  const loginStatus = () => {
+    dispatch(userStatusLogout());
+    dispatch(userSignUp());
+  };
+  loginStatus(); 
+
+
   const getPostData = async () => {
     const data = {
       email: localStorage.getItem("email"),
@@ -138,7 +154,7 @@ const Admin = () => {
                       onClick={readMore}
                       className="text-cust-white py-2 px-3 bg-black rounded-lg mt-2 "
                     >
-                      Read More
+                      Review Post
                     </button>
                     <MdDelete
                       onClick={deletePost}

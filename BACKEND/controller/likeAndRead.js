@@ -7,8 +7,6 @@ const likeAndRead = async (req, res) => {
     const { id, title, email, tag, image, description, author, value } =
       req.body;
 
-      console.log(req.body)
-
     // Check  value variable
     if (value == "readMoreButton") {
       //Create an entry inside the "read" db collection, which post the user has read.

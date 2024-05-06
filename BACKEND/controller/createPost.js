@@ -8,29 +8,26 @@ const createPost = async (req, res) => {
     const file = req.files.uploadfile;
     const { title, catagory, maincontent, email } = req.body;
 
-     let newTitle="";
+    let newTitle = "";
 
-     const validation=()=>{
-        const titleArr=title.split(" ");
-         titleArr.forEach((item)=>{
-          const extractPartOfstr=item.length-1
-            const myString= item.substring(0, 1).toUpperCase()+item.substr(1,extractPartOfstr);
-            newTitle=newTitle+" "+myString;
-          })
-          
-        }
-        validation();
-      
-     if(maincontent.length<150){
+    const validation = () => {
+      const titleArr = title.split(" ");
+      titleArr.forEach((item) => {
+        const extractPartOfstr = item.length - 1;
+        const myString =
+          item.substring(0, 1).toUpperCase() + item.substr(1, extractPartOfstr);
+        newTitle = newTitle + " " + myString;
+      });
+    };
+    validation();
+
+    if (maincontent.length < 150) {
       return res.status(200).json({
-        success:false,
-        massage:"Your blog shouldn't be lesser than 150 words."
-      })
-     }
-  
-    // let path =
-    //   __dirname + "/files/" + Date.now() + `.${file.name.split(".")[1]}`;
-    // Find the user by email and extract its registered name..
+        success: false,
+        massage: "Your blog shouldn't be lesser than 150 words.",
+      });
+    }
+
     const user = await userSchema.findOne({ email });
     const author = user.name;
 
@@ -69,19 +66,25 @@ const createPost = async (req, res) => {
     const response = uploadFileToCloud;
     const secureImgURL = response.secure_url;
     // Check if same post alredy exists..
-    const existingPost=await myPOST.findOne({maincontent});
-    if(existingPost){
+    const existingPost = await myPOST.findOne({ maincontent });
+    const existingPostTitle = await myPOST.findOne({ title:newTitle });
+    if (existingPost) {
       return res.status(200).json({
-        success:false,
-        massage:"This post already exists.Please create a new one."
-      })
-    } 
+        success: false,
+        massage: "A post with same content already exists.",
+      });
+    } else if (existingPostTitle) {
+      return res.status(200).json({
+        success: false,
+        massage: "A post with same title name already exists.",
+      });
+    }
 
     //Now we are createing an entry of the post that a user has created inside the DB..
     const createPostEntry = await myPOST.create({
       email,
       author,
-      title:newTitle,
+      title: newTitle,
       catagory,
       secureImgURL,
       maincontent,

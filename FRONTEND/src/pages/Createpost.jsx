@@ -6,10 +6,30 @@ import bookmark from "../images/logo/bookmark.png";
 import GoPrev from "../components/GoPrev";
 import { useState } from "react";
 import { LoadingPage } from "./LoadingPage";
+import { userStatusLogout, userSignUp } from "../redux/firstSlice/firstSlice";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
 
 const Createpost = () => {
+  const navigate = useNavigate();
+  const dispatch=useDispatch();
   // const { register, handleSubmit } = useForm();
   const [loading, setLoading] = useState(false);
+
+  const getValueFromLocal = localStorage.getItem("myValue");
+
+  if (getValueFromLocal === "false") {
+    navigate("/login");
+  } 
+  
+
+  const loginStatus = () => {
+    dispatch(userStatusLogout());
+    dispatch(userSignUp());
+  };
+  loginStatus(); 
+
 
   const createPost = async (event) => {
     setLoading(true);
@@ -126,7 +146,7 @@ const Createpost = () => {
                 className="border rounded-lg p-2 text-[15px] mx-auto"
                 name="maincontent"
                 id=""
-                cols="30"
+                cols="33"
                 rows="10"
                 resize="none"
               ></textarea>

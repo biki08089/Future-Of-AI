@@ -15,6 +15,8 @@ const createPost = require("../controller/createPost");
 const myPOST = require("../model/post");
 const deletePost = require("../controller/deletePost");
 const likeAndRead = require("../controller/likeAndRead");
+const getUserLike_readData = require("../controller/getUserLike_readData");
+const userSchema = require("../model/userSchema");
 
 router.post("/signup/verify", sendAndSaveOTP);
 router.post("/signup/verify/email", verifyOtp);
@@ -24,14 +26,16 @@ router.post("/admin/createpost", createPost);
 router.post("/admin/deletepost", deletePost);
 router.post("/login/forgotPass/updatePass", updatePassword);
 router.post("/dashboard/wishlist", wishList);
-router.post("/like_read",likeAndRead);
+router.post("/like_read", likeAndRead);
+router.post("/getuserData", getUserLike_readData);
 router.post("/dasboard", async (req, res) => {
   try {
     const { email } = req.body;
 
     const wishlistedData = await wishListedItems
       .find({ email })
-      .populate("items").populate("itemsLikedfromCreatorPage")
+      .populate("items")
+      .populate("itemsLikedfromCreatorPage")
       .exec();
 
     if (wishlistedData) {
@@ -67,6 +71,24 @@ router.post("/admin/getpost", async (req, res) => {
     return res.status(500).json({
       success: false,
       massage: "Couldn't fetch posts",
+    });
+  }
+});
+
+router.post("/getuser", async (req, res) => {
+  try {
+    const { email } = req.body;
+    const findUser = await userSchema.findOne({ email });
+    res.status(200).json({
+      success: true,
+      user: findUser,
+      massage: "User Found.",
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      massage: "Couldn't get user data",
     });
   }
 });

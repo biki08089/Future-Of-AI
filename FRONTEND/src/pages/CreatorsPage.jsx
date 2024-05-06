@@ -9,6 +9,7 @@ import { readPostOnClick } from "../redux/firstSlice/firstSlice";
 import { useNavigate } from "react-router-dom";
 import { FcLike } from "react-icons/fc";
 import { FcLikePlaceholder } from "react-icons/fc";
+import { userStatusLogout, userSignUp } from "../redux/firstSlice/firstSlice";
 import { cartItem } from "../redux/firstSlice/myapiSlice";
 
 const CreatorsPage = () => {
@@ -16,8 +17,18 @@ const CreatorsPage = () => {
   const dispatch = useDispatch();
   const [allPost, setAllpost] = useState([]);
   const [likedArr, setLikedArr] = useState([]);
-  console.log(likedArr);
-  console.log(allPost);
+
+  const getValueFromLocal = localStorage.getItem("myValue");
+
+  if (getValueFromLocal === "false") {
+    navigate("/login");
+  }
+  
+  const loginStatus = () => {
+    dispatch(userStatusLogout());
+    dispatch(userSignUp());
+  };
+  loginStatus(); 
 
   const loadPost = async () => {
     const getAllPost = await fetch(`${VITE_BASE_URL}/login/dashboard/allpost`);
@@ -59,6 +70,7 @@ const CreatorsPage = () => {
       newArr.push(element.id);
     });
     setLikedArr(newArr);
+    dispatch(cartItem(responseData.length))
   };
 
   /*This function will send a post request with email id and will give us Itemswishlisted db's related data in 
@@ -88,6 +100,7 @@ const CreatorsPage = () => {
       newArr.push(element.id);
     });
     setLikedArr(newArr);
+    dispatch(cartItem(newArrOflikes.length))
   };
 
   const readMore = (event) => {
@@ -120,7 +133,7 @@ const CreatorsPage = () => {
       <GoPrev></GoPrev>
       <div className="h-[100vh] bg-cust-black overflow-y-scroll">
         {/* <p className="text-cust-white text-center">These posts are created by real users from around the internet. If you want to be one of them then please creat an acount with us as "Admin" and create content whateever you like and publish it. So, that others can expore your content.</p> */}
-        <div className=" py-[2rem] flex justify-center items-center ">
+        <div  className=" py-[2rem] flex justify-center items-center ">
           {allPost.length == 0 ? (
             <div className="h-[100vh] flex justify-center items-center">
               <p className="text-[1.2rem] text-cust-white">
@@ -128,13 +141,13 @@ const CreatorsPage = () => {
               </p>
             </div>
           ) : (
-            <div className="">
+            <div  className="">
               <h1 className="py-2 px-4 bg-black w-[8rem] text-center rounded-lg  text-cust-white font-medium">
                 <span className="animate-pulseeb">Posts </span>
               </h1>
               {allPost.map((eachPost) => {
                 return (
-                  <div
+                  <div 
                     id={eachPost._id}
                     className="max-h-[33rem] w-[17rem] px-[1rem] py-[1rem] rounded-xl bg-cust-white my-6"
                     key={eachPost._id}
@@ -218,3 +231,5 @@ const CreatorsPage = () => {
 };
 
 export default CreatorsPage;
+
+

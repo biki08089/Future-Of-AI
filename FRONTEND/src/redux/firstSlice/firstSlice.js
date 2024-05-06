@@ -7,13 +7,17 @@ const initialState = {
   loginStatus: "Login",
   signupStatus: false,
   passType:false,
-  passType2nd:false
+  passType2nd:false,
+  navBarUpdated:null,
 };
 
 const menuSlice = createSlice({
   name: "menu",
   initialState,
   reducers: {
+    navBarUpdated:(state,action)=>{
+      state.navBarUpdated=action.payload
+    },
     readPostOnClick:(state,action)=>{
       state.readPost=action.payload
     },
@@ -54,6 +58,6 @@ const menuSlice = createSlice({
   },
 });
 
-export const {changePasstype,changePasstype2nd, incAnddec, updateuserData, userStatusLogin, userStatusLogout ,userSignUp,userSignUpfalse, readPostOnClick} =
+export const {navBarUpdated,changePasstype,changePasstype2nd, incAnddec, updateuserData, userStatusLogin, userStatusLogout ,userSignUp,userSignUpfalse, readPostOnClick} =
   menuSlice.actions;
 export default menuSlice.reducer;

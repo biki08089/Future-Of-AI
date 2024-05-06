@@ -15,6 +15,7 @@ import { IoMdEye } from "react-icons/io";
 import { IoIosEyeOff } from "react-icons/io";
 import { useState } from "react";
 import { LoadingPage } from "./LoadingPage";
+import { navBarUpdated } from "../redux/firstSlice/firstSlice";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -48,9 +49,11 @@ const Login = () => {
       body: JSON.stringify(data),
     });
     const response = await userLogin.json();
+    console.log(response);
     const token = response.token;
     const responseIs = response.success;
     if (responseIs) {
+      dispatch(navBarUpdated(response.userAccType));
       localStorage.setItem("myValue", true);
       const sendToken = await fetch(
         `${VITE_BASE_URL}/login/success/authorization`,

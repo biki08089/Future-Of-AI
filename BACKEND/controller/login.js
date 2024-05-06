@@ -54,6 +54,7 @@ const login = async (req, res) => {
     return res.status(200).json({
       success: true,
       token,
+      userAccType:existingUser.acountType,
       massage: "Logged in successfully.",
     });
   } catch (error) {
