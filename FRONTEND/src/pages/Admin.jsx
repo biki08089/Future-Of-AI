@@ -8,6 +8,7 @@ import GoPrev from "../components/GoPrev";
 import { useDispatch } from "react-redux";
 import { readPostOnClick } from "../redux/firstSlice/firstSlice";
 import { userStatusLogout, userSignUp } from "../redux/firstSlice/firstSlice";
+import Profile from "../components/Profile";
 
 
 const Admin = () => {
@@ -16,7 +17,7 @@ const Admin = () => {
   const [allPost, setPost] = useState([]);
 
   localStorage.setItem("Profile","Admin")
-
+  
   const getValueFromLocal = localStorage.getItem("myValue");
 
   if (getValueFromLocal === "false") {
@@ -89,8 +90,9 @@ const Admin = () => {
   }, []);
 
   return (
-    <div className="min-h-[100vh] bg-cust-black text-cust-white">
-      <div className="bg-black flex justify-center flex-col items-center py-4">
+    <div className="min-h-[100vh] bg-cust-black ">
+      <Profile/>
+      <div className="bg-black text-cust-white flex justify-center flex-col items-center py-4">
         <h1 className="text-[1.2rem] pb-2">Welcome to Admin Page.</h1>
         <button
           data-aos="zoom-in"

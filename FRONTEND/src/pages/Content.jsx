@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import GoPrev from "../components/GoPrev";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import Profile from "../components/Profile";
 
 const Content = () => {
   const navigate = useNavigate();
@@ -36,6 +37,7 @@ const Content = () => {
 
   return (
     <>
+    <Profile/>
       <GoPrev />
 
       <div className="pb-6 overflow-y-scroll px-5 h-[100vh]  sm:h-[70vh] pt-5 bg-cust-black text-cust-white flex flex-col items-center justify-start">

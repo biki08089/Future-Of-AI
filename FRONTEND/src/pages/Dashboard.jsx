@@ -11,6 +11,7 @@ import { FcLike } from "react-icons/fc";
 import { FcLikePlaceholder } from "react-icons/fc";
 const VITE_BASE_URL = import.meta.env.VITE_BASE_URL;
 import { LoadingPage } from "./LoadingPage";
+import Profile from "../components/Profile";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -131,6 +132,7 @@ const Dashboard = () => {
   // sm:grid sm:grid-cols-2 sm:grid-rows-5 sm:gap-x-1 sm:gap-y-4
   return (
     <div>
+      <Profile/>
       <PageChanger></PageChanger>
       <div className="bg-cust-black pt-1">
         <FutureAI></FutureAI>

@@ -9,6 +9,7 @@ import { LoadingPage } from "./LoadingPage";
 import { userStatusLogout, userSignUp } from "../redux/firstSlice/firstSlice";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import Profile from "../components/Profile";
 
 
 const Createpost = () => {
@@ -64,6 +65,7 @@ const Createpost = () => {
   return (
     <div>
       <GoPrev></GoPrev>
+      <Profile/>
       {loading ? (
         <div className="h-[100vh] bg-cust-black flex justify-center items-center">
           <LoadingPage />

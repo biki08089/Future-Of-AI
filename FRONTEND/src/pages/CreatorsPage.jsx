@@ -11,6 +11,7 @@ import { FcLike } from "react-icons/fc";
 import { FcLikePlaceholder } from "react-icons/fc";
 import { userStatusLogout, userSignUp } from "../redux/firstSlice/firstSlice";
 import { cartItem } from "../redux/firstSlice/myapiSlice";
+import Profile from "../components/Profile";
 
 const CreatorsPage = () => {
   const navigate = useNavigate();
@@ -131,6 +132,7 @@ const CreatorsPage = () => {
   }, []);
   return (
     <div>
+      <Profile/>
       <GoPrev></GoPrev>
       <div className="h-[100vh] bg-cust-black overflow-y-scroll">
         {/* <p className="text-cust-white text-center">These posts are created by real users from around the internet. If you want to be one of them then please creat an acount with us as "Admin" and create content whateever you like and publish it. So, that others can expore your content.</p> */}

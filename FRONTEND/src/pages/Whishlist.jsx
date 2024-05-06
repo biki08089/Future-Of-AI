@@ -13,6 +13,7 @@ import { userStatusLogout, userSignUp } from "../redux/firstSlice/firstSlice";
 import { useNavigate } from "react-router-dom";
 import GoPrev from "../components/GoPrev";
 import { LoadingPage } from "./LoadingPage";
+import Profile from "../components/Profile";
 
 const Whishlist = () => {
   const navigate = useNavigate();
@@ -116,6 +117,7 @@ const Whishlist = () => {
 
   return (
     <div>
+      <Profile/>
       <GoPrev />
 
       {myData.length == 0 ? (

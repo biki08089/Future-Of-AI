@@ -4,6 +4,7 @@ import GoPrev from "../components/GoPrev";
 import { useNavigate } from "react-router-dom";
 import StatsAndFigs from "../components/StatsAndFigs";
 import { useEffect } from "react";
+import Profile from "../components/Profile";
 
 
 const AdminReview = () => {
@@ -35,10 +36,11 @@ const AdminReview = () => {
    },[])
 
   return (
-    <div className="h-[100vh] bg-black text-cust-white overflow-y-scroll">
+    <div className="h-[100vh] bg-black  overflow-y-scroll">
       <GoPrev />
+      <Profile/>
       <StatsAndFigs/>
-      <div className="flex flex-col justify-center items-center px-3 pt-6">
+      <div className="flex flex-col justify-center items-center text-cust-white px-3 pt-6">
         <h1 className="my-3 text-[2.3rem]">{post[0].title}</h1>
         <img className="h-[14rem] rounded-lg my-3" src={post[0].secureImgURL} alt="No image" />
         <p className="my-3">Catagory: {post[0].catagory}</p>
