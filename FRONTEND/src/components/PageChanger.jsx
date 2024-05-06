@@ -43,7 +43,7 @@ const PageChanger = () => {
 
   // console.log("mtuyuig: "+apiData);
   return (
-    <div>
+    <div className="sticky top-[8rem] z-10">
       <div className="h-[3rem] bg-cust-black flex justify-between items-center px-4 sm:px-12">
         <div className="flex">
           {page > 1 && (

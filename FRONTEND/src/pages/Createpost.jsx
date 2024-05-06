@@ -64,14 +64,14 @@ const Createpost = () => {
 
   return (
     <div>
-      <GoPrev></GoPrev>
       <Profile/>
+      <GoPrev></GoPrev>
       {loading ? (
         <div className="h-[100vh] bg-cust-black flex justify-center items-center">
           <LoadingPage />
         </div>
       ) : (
-        <div className="h-[100vh] flex flex-col justify-center items-center bg-black">
+        <div className="h-[100vh] flex flex-col justify-center items-center bg-cust-black">
           <div
             data-aos="zoom-in"
             className="flex flex-col justify-center items-center mb-7"
