@@ -26,6 +26,7 @@ const Whishlist = () => {
   });
   console.log(newArr);
 
+  localStorage.setItem("Profile","Regular")
   const getValueFromLocal = localStorage.getItem("myValue");
   if (getValueFromLocal === "false") {
     navigate("/login");

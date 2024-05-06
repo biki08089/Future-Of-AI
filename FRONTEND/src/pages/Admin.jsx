@@ -15,6 +15,8 @@ const Admin = () => {
   const dispatch = useDispatch();
   const [allPost, setPost] = useState([]);
 
+  localStorage.setItem("Profile","Admin")
+
   const getValueFromLocal = localStorage.getItem("myValue");
 
   if (getValueFromLocal === "false") {

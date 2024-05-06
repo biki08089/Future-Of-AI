@@ -2,10 +2,13 @@ import React from "react";
 import { useSelector } from "react-redux";
 import GoPrev from "../components/GoPrev";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Content = () => {
   const navigate = useNavigate();
   const getValueFromLocal = localStorage.getItem("myValue");
+  localStorage.setItem("Profile","Regular")
+
 
   if (getValueFromLocal === "false") {
     console.log("Login first");
@@ -22,6 +25,14 @@ const Content = () => {
   if (!readMore) {
     location.assign("/login/dashboard");
   }
+
+  const scroll=()=>{
+    window.scrollTo(0,0)
+   };
+
+   useEffect(()=>{
+       scroll();
+   },[])
 
   return (
     <>

@@ -16,6 +16,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  localStorage.setItem("Profile","Regular")
   const getValueFromLocal = localStorage.getItem("myValue");
 
   if (getValueFromLocal === "false") {

@@ -3,10 +3,13 @@ import { useSelector } from "react-redux";
 import GoPrev from "../components/GoPrev";
 import { useNavigate } from "react-router-dom";
 import StatsAndFigs from "../components/StatsAndFigs";
+import { useEffect } from "react";
 
 
 const AdminReview = () => {
   const navigate = useNavigate();
+
+  localStorage.setItem("Profile","Admin")
   const getValueFromLocal = localStorage.getItem("myValue");
 
   if (getValueFromLocal === "false") {
@@ -22,6 +25,14 @@ const AdminReview = () => {
    if(!myPost){
     location.assign("/login/creatorspage")
    }
+
+   const scroll=()=>{
+    window.scrollTo(0,0)
+   };
+
+   useEffect(()=>{
+       scroll();
+   },[])
 
   return (
     <div className="h-[100vh] bg-black text-cust-white overflow-y-scroll">

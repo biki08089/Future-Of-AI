@@ -18,6 +18,7 @@ const CreatorsPage = () => {
   const [allPost, setAllpost] = useState([]);
   const [likedArr, setLikedArr] = useState([]);
 
+  localStorage.setItem("Profile","Regular")
   const getValueFromLocal = localStorage.getItem("myValue");
 
   if (getValueFromLocal === "false") {

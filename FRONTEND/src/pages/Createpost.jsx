@@ -16,6 +16,8 @@ const Createpost = () => {
   const dispatch=useDispatch();
   // const { register, handleSubmit } = useForm();
   const [loading, setLoading] = useState(false);
+  localStorage.setItem("Profile","Admin")
+
 
   const getValueFromLocal = localStorage.getItem("myValue");
 
@@ -151,7 +153,7 @@ const Createpost = () => {
                 resize="none"
               ></textarea>
               <button className="border px-3 py-1 rounded-lg font-bold bg-black text-cust-white">
-                Create Post
+                Create and Publish
               </button>
             </form>
           </div>
