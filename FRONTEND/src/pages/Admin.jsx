@@ -10,27 +10,24 @@ import { readPostOnClick } from "../redux/firstSlice/firstSlice";
 import { userStatusLogout, userSignUp } from "../redux/firstSlice/firstSlice";
 import Profile from "../components/Profile";
 
-
 const Admin = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [allPost, setPost] = useState([]);
 
-  localStorage.setItem("Profile","Admin")
-  
+  localStorage.setItem("Profile", "Admin");
+
   const getValueFromLocal = localStorage.getItem("myValue");
 
   if (getValueFromLocal === "false") {
     navigate("/login");
-  } 
-  
+  }
 
   const loginStatus = () => {
     dispatch(userStatusLogout());
     dispatch(userSignUp());
   };
-  loginStatus(); 
-
+  loginStatus();
 
   const getPostData = async () => {
     const data = {
@@ -82,7 +79,7 @@ const Admin = () => {
     const finalPost = allPost.filter((eachPost) => {
       return eachPost._id == filteredPost;
     });
-    dispatch(readPostOnClick(finalPost))
+    dispatch(readPostOnClick(finalPost));
   };
 
   useEffect(() => {
@@ -91,7 +88,7 @@ const Admin = () => {
 
   return (
     <div className="min-h-[100vh] bg-cust-black ">
-      <Profile/>
+      <Profile  />
       <div className="bg-black text-cust-white flex justify-center flex-col items-center py-4">
         <h1 className="text-[1.2rem] pb-2">Welcome to Admin Page.</h1>
         <button
@@ -108,66 +105,70 @@ const Admin = () => {
       <div className=" py-[2rem] flex justify-center items-center ">
         {allPost.length == 0 ? (
           <div className="h-[100vh] flex justify-center items-center">
-            <p className="text-[1.2rem]">You haven't created anything !</p>
+            <p className="text-[1.2rem] text-cust-white">You haven't created anything !</p>
           </div>
         ) : (
-          <div className="">
-            <h1 className="py-2 px-4 bg-black w-[7.5rem] text-center rounded-lg animate-bounceb text-dark-green">
-              Your Posts
-            </h1>
-            {allPost.map((eachPost) => {
-              return (
-                <div
-                  id={eachPost._id}
-                  className="max-h-[33rem] w-[17rem] px-[1rem] py-[1rem] rounded-xl bg-cust-white my-6"
-                  key={eachPost._id}
-                >
-                  <div className="bg-cust-EEEDEB shadow-3xl rounded-lg h-[11rem] flex justify-center items-center ">
-                    <img
-                      src={eachPost.secureImgURL}
-                      alt=" No Image"
-                      className=" rounded-lg h-[9rem]"
-                    />
-                  </div>
-
-                  <h2 className="mt-3 text-black font-bold text-[1.3rem]">
-                    {eachPost.title}
-                  </h2>
-                  <h2 className="text-dark-green font-bold text-[1rem]">
-                    Catagory: {eachPost.catagory}
-                  </h2>
-                  <h2 className="text-cust-lite-black font-bold text-[0.8rem]">
-                    Created By: {eachPost.author}
-                  </h2>
-
-                  <p className="text-black mt-2 overflow-x-hidden ">
-                    {(
-                      eachPost.maincontent.substring(0, 1).toUpperCase() +
-                      eachPost.maincontent.substr(
-                        1,
-                        eachPost.maincontent.length - 1
-                      )
-                    ).substring(0, 150)}
-                    ...
-                  </p>
+          <div className="sm:px-[5rem] sm:flex sm:flex-col sm:justify-center sm:items-center">
+              <h1 className="py-2 px-4 bg-black w-[7.5rem] text-center rounded-lg animate-bounceb text-dark-green">
+                Your Posts
+              </h1>
+            <div className="sm:flex sm:flex-wrap sm:justify-center ">
+              {allPost.map((eachPost) => {
+                return (
                   <div
                     id={eachPost._id}
-                    className="flex justify-between items-center mt-3"
+                    className="max-h-[33rem] sm:m-2 w-[17rem] lg:w-[19rem]  px-[1rem] py-[1rem] rounded-xl bg-cust-white my-6"
+                    key={eachPost._id}
                   >
-                    <button
-                      onClick={readMore}
-                      className="text-cust-white py-2 px-3 bg-black rounded-lg mt-2 "
+                    <div className="bg-cust-EEEDEB shadow-3xl rounded-lg h-[11rem] flex justify-center items-center ">
+                      <img
+                        src={eachPost.secureImgURL}
+                        alt=" No Image"
+                        className=" rounded-lg h-[9rem]"
+                      />
+                    </div>
+
+                    <h2 className="mt-3 text-black font-bold text-[1.3rem]">
+                      {eachPost.title}
+                    </h2>
+                    <h2 className="text-dark-green font-bold text-[1rem]">
+                      Catagory: {eachPost.catagory}
+                    </h2>
+                    <h2 className="text-cust-lite-black font-bold text-[0.8rem]">
+                      Created By: {eachPost.author}
+                    </h2>
+
+                    <p className="text-black mt-2 overflow-x-hidden ">
+                      {(
+                        eachPost.maincontent.substring(0, 1).toUpperCase() +
+                        eachPost.maincontent.substr(
+                          1,
+                          eachPost.maincontent.length - 1
+                        )
+                      ).substring(0, 150)}
+                      ...
+                    </p>
+                    <div
+                      id={eachPost._id}
+                      className="flex justify-between items-center mt-3"
                     >
-                      Review Post
-                    </button>
-                    <MdDelete
-                      onClick={deletePost}
-                      className="h-[1.8rem] w-[1.8rem] text-black"
-                    />
+                      <button
+                        data-aos="zoom-in"
+                        onClick={readMore}
+                        className="text-cust-white py-2 px-3 bg-black rounded-lg mt-2 "
+                      >
+                        Review Post
+                      </button>
+                      <MdDelete
+                        data-aos="zoom-in"
+                        onClick={deletePost}
+                        className="h-[1.8rem] w-[1.8rem] text-black"
+                      />
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         )}
       </div>

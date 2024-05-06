@@ -75,14 +75,14 @@ const StatsAndFigs = () => {
           <div className="flex w-[23rem]  mx-auto text-cust-white">
             <div className="w-[11rem] h-[10rem] flex flex-col justify-center items-center">
               <h1 className=" text-[2rem]">{like}</h1>
-              <img src={love} alt="" className="h-[3rem] w-[3rem] mb-1" />
+              <img data-aos="zoom-in" src={love} alt="" className="h-[3rem] w-[3rem] mb-1" />
               <p className="text-center text-[15px] px-4">
                 Total number of users liked.
               </p>
             </div>
             <div className=" w-[11rem] h-[10rem] flex flex-col justify-center items-center">
               <h1 className=" text-[2rem]">{read}</h1>
-              <img src={book} alt="" className="h-[3rem] w-[3rem] mb-1" />
+              <img data-aos="zoom-in" src={book} alt="" className="h-[3rem] w-[3rem] mb-1" />
               <p className="text-center text-[15px] px-4">
                 Total number of users read.
               </p>

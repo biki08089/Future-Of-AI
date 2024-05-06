@@ -19,18 +19,18 @@ const CreatorsPage = () => {
   const [allPost, setAllpost] = useState([]);
   const [likedArr, setLikedArr] = useState([]);
 
-  localStorage.setItem("Profile","Regular")
+  localStorage.setItem("Profile", "Regular");
   const getValueFromLocal = localStorage.getItem("myValue");
 
   if (getValueFromLocal === "false") {
     navigate("/login");
   }
-  
+
   const loginStatus = () => {
     dispatch(userStatusLogout());
     dispatch(userSignUp());
   };
-  loginStatus(); 
+  loginStatus();
 
   const loadPost = async () => {
     const getAllPost = await fetch(`${VITE_BASE_URL}/login/dashboard/allpost`);
@@ -72,7 +72,7 @@ const CreatorsPage = () => {
       newArr.push(element.id);
     });
     setLikedArr(newArr);
-    dispatch(cartItem(responseData.length))
+    dispatch(cartItem(responseData.length));
   };
 
   /*This function will send a post request with email id and will give us Itemswishlisted db's related data in 
@@ -102,7 +102,7 @@ const CreatorsPage = () => {
       newArr.push(element.id);
     });
     setLikedArr(newArr);
-    dispatch(cartItem(newArrOflikes.length))
+    dispatch(cartItem(newArrOflikes.length));
   };
 
   const readMore = (event) => {
@@ -132,11 +132,11 @@ const CreatorsPage = () => {
   }, []);
   return (
     <div>
-      <Profile/>
+      <Profile />
       <GoPrev></GoPrev>
-      <div className="h-[100vh] bg-cust-black overflow-y-scroll">
+      <div className="h-[100vh] bg-cust-black overflow-y-scroll ">
         {/* <p className="text-cust-white text-center">These posts are created by real users from around the internet. If you want to be one of them then please creat an acount with us as "Admin" and create content whateever you like and publish it. So, that others can expore your content.</p> */}
-        <div  className=" py-[2rem] flex justify-center items-center ">
+        <div className=" py-[2rem] flex justify-center items-center shadow-3xl">
           {allPost.length == 0 ? (
             <div className="h-[100vh] flex justify-center items-center">
               <p className="text-[1.2rem] text-cust-white">
@@ -144,55 +144,56 @@ const CreatorsPage = () => {
               </p>
             </div>
           ) : (
-            <div  className="">
+            <div className="sm:px-[5rem] sm:flex sm:flex-col sm:justify-center sm:items-center">
               <h1 className="py-2 px-4 bg-black w-[8rem] text-center rounded-lg  text-cust-white font-medium">
                 <span className="animate-pulseeb">Posts </span>
               </h1>
-              {allPost.map((eachPost) => {
-                return (
-                  <div 
-                    id={eachPost._id}
-                    className="max-h-[33rem] w-[17rem] px-[1rem] py-[1rem] rounded-xl bg-cust-white my-6"
-                    key={eachPost._id}
-                  >
-                    <div className="bg-cust-EEEDEB shadow-3xl rounded-lg h-[11rem] flex justify-center items-center ">
-                      <img
-                        src={eachPost.secureImgURL}
-                        alt=" No Image"
-                        className=" rounded-lg h-[9rem]"
-                      />
-                    </div>
-
-                    <h2 className="mt-3 text-black font-bold text-[1.3rem]">
-                      {eachPost.title}
-                    </h2>
-                    <h2 className="text-dark-green font-bold text-[1rem]">
-                      Catagory: {eachPost.catagory}
-                    </h2>
-                    <h2 className="text-cust-lite-black font-bold text-[0.8rem]">
-                      Created By: {eachPost.author}
-                    </h2>
-
-                    <p className="text-black mt-2 overflow-x-hidden ">
-                      {(
-                        eachPost.maincontent.substring(0, 1).toUpperCase() +
-                        eachPost.maincontent.substr(
-                          1,
-                          eachPost.maincontent.length - 1
-                        )
-                      ).substring(0, 150)}
-                      ...
-                    </p>
-                    <div className="flex justify-between items-center mt-3">
-                      <div id={eachPost._id} name="readMoreButton">
-                        <button
-                          onClick={readMore}
-                          className="text-cust-white py-2 px-3 bg-black rounded-lg mt-2 "
-                        >
-                          Read More
-                        </button>
+              <div className="sm:flex sm:flex-wrap sm:justify-center ">
+                {allPost.map((eachPost) => {
+                  return (
+                    <div
+                      id={eachPost._id}
+                      className="max-h-[33rem] m-3 w-[17rem] lg:w-[19rem] px-[1rem] py-[1rem] rounded-xl bg-cust-white my-6"
+                      key={eachPost._id}
+                    >
+                      <div className="bg-cust-EEEDEB shadow-3xl rounded-lg h-[11rem] flex justify-center items-center ">
+                        <img
+                          src={eachPost.secureImgURL}
+                          alt=" No Image"
+                          className=" rounded-lg h-[9rem]"
+                        />
                       </div>
-                      {/* <div id={eachPost._id} name="add">
+
+                      <h2 className="mt-3 text-black font-bold text-[1.3rem]">
+                        {eachPost.title}
+                      </h2>
+                      <h2 className="text-dark-green font-bold text-[1rem]">
+                        Catagory: {eachPost.catagory}
+                      </h2>
+                      <h2 className="text-cust-lite-black font-bold text-[0.8rem]">
+                        Created By: {eachPost.author}
+                      </h2>
+
+                      <p className="text-black mt-2 overflow-x-hidden ">
+                        {(
+                          eachPost.maincontent.substring(0, 1).toUpperCase() +
+                          eachPost.maincontent.substr(
+                            1,
+                            eachPost.maincontent.length - 1
+                          )
+                        ).substring(0, 150)}
+                        ...
+                      </p>
+                      <div className="flex justify-between items-center mt-3">
+                        <div id={eachPost._id} name="readMoreButton">
+                          <button
+                            onClick={readMore}
+                            className="text-cust-white py-2 px-3 bg-black rounded-lg mt-2 "
+                          >
+                            Read More
+                          </button>
+                        </div>
+                        {/* <div id={eachPost._id} name="add">
                         <MdDelete
                           id={eachPost._id}
                           name="add"
@@ -200,31 +201,40 @@ const CreatorsPage = () => {
                           className="h-[1.8rem] w-[1.8rem] text-black"
                         />
                       </div> */}
-                      {likedArr.includes(eachPost._id) ? (
-                        <div id={eachPost._id} name="remove" className="h-[3rem]">
-                          <FcLike
+                        {likedArr.includes(eachPost._id) ? (
+                          <div
                             id={eachPost._id}
                             name="remove"
-                            onClick={sendLikedData}
-                            className="h-[1.9rem] mb-1 mx-auto w-[1.9rem] rounded-[50%] bg-cust-gray2nd p-1"
-                          />
-                          <p className="text-[12px]">Remove Blog</p>
-                        </div>
-                      ) : (
-                        <div id={eachPost._id} name="add" className="h-[3rem]">
-                          <FcLikePlaceholder
+                            className="h-[3rem]"
+                          >
+                            <FcLike
+                              id={eachPost._id}
+                              name="remove"
+                              onClick={sendLikedData}
+                              className="h-[1.9rem] mb-1 mx-auto w-[1.9rem] rounded-[50%] bg-cust-gray2nd p-1"
+                            />
+                            <p className="text-[12px]">Remove Blog</p>
+                          </div>
+                        ) : (
+                          <div
                             id={eachPost._id}
                             name="add"
-                            onClick={sendLikedData}
-                            className="h-[1.9rem] mb-1 mx-auto w-[1.9rem] rounded-[50%] bg-black p-1"
-                          />
-                          <p className="text-[12px]">Add to wishlist</p>
-                        </div>
-                      )}
+                            className="h-[3rem]"
+                          >
+                            <FcLikePlaceholder
+                              id={eachPost._id}
+                              name="add"
+                              onClick={sendLikedData}
+                              className="h-[1.9rem] mb-1 mx-auto w-[1.9rem] rounded-[50%] bg-black p-1"
+                            />
+                            <p className="text-[12px]">Add to wishlist</p>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
           )}
         </div>
@@ -234,5 +244,3 @@ const CreatorsPage = () => {
 };
 
 export default CreatorsPage;
-
-

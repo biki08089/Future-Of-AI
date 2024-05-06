@@ -41,7 +41,7 @@ const AdminReview = () => {
 
   return (
     <>
-      <div className="bg-cust-black h-[3rem] text-[1.4rem] pt-3 pl-4 text-cust-white sticky top-[4rem] z-10">
+      <div className="bg-cust-black h-[3rem] text-[16px] pt-3 pl-4 text-cust-white sticky top-[4rem] z-10">
         <FaArrowLeftLong onClick={goBack} />
       </div>
       <div className="h-[100vh] bg-black  overflow-y-scroll">
@@ -57,7 +57,7 @@ const AdminReview = () => {
           <p className="my-3">Catagory: {post[0].catagory}</p>
           <p className="my-3">Created By: {post[0].author}</p>
 
-          <p className="px-1">{post[0].maincontent}</p>
+          <p className="px-1 pb-10">{post[0].maincontent}</p>
         </div>
       </div>
     </>

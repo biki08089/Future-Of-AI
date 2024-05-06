@@ -112,8 +112,8 @@ const Signup = () => {
                   required
                   {...register("acountType")}
                 >
-                  <option value="Admin">Admin</option>
                   <option value="Regular">Regular</option>
+                  <option value="Admin">Admin</option>
                 </select>
               </div>
 
