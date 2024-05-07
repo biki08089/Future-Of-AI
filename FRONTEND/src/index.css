@@ -6,6 +6,8 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: white;
   scroll-behavior: smooth;
+  /* background-color: #ffa516; */
+  box-sizing: border-box;
 }
 
 .filter {

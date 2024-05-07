@@ -11,28 +11,24 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Profile from "../components/Profile";
 
-
 const Createpost = () => {
   const navigate = useNavigate();
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   // const { register, handleSubmit } = useForm();
   const [loading, setLoading] = useState(false);
-  localStorage.setItem("Profile","Admin")
-
+  localStorage.setItem("Profile", "Admin");
 
   const getValueFromLocal = localStorage.getItem("myValue");
 
   if (getValueFromLocal === "false") {
     navigate("/login");
-  } 
-  
+  }
 
   const loginStatus = () => {
     dispatch(userStatusLogout());
     dispatch(userSignUp());
   };
-  loginStatus(); 
-
+  loginStatus();
 
   const createPost = async (event) => {
     setLoading(true);
@@ -64,7 +60,7 @@ const Createpost = () => {
 
   return (
     <div>
-      <Profile/>
+      <Profile />
       <GoPrev></GoPrev>
       {loading ? (
         <div className="h-[100vh] bg-cust-black flex justify-center items-center">
@@ -143,17 +139,19 @@ const Createpost = () => {
                 name="uploadfile"
               />
               <br />
-              <label className="font-bold" htmlFor="maincontent">
-                Your content
-              </label>
-              <textarea
-                className="border rounded-lg p-2 text-[15px] mx-auto"
-                name="maincontent"
-                id=""
-                cols="33"
-                rows="10"
-                resize="none"
-              ></textarea>
+              <div className=" flex flex-col mb-4" >
+                <label className="font-bold" htmlFor="maincontent">
+                  Your content
+                </label>
+                <textarea
+                  className="border rounded-lg p-2 text-[15px] mx-auto 2xl:w-[43rem] xl:w-[38rem] lg:w-[33rem] md:w-[27rem] md:h-[16rem] sm:w-[24rem] w-[17rem] h-[18rem]"
+                  name="maincontent"
+                  id=""
+                  // cols="50"
+                  // rows="10"
+                  resize="none"
+                ></textarea>
+              </div>
               <button className="border px-3 py-1 rounded-lg font-bold bg-black text-cust-white">
                 Create and Publish
               </button>
@@ -166,4 +164,3 @@ const Createpost = () => {
 };
 
 export default Createpost;
-

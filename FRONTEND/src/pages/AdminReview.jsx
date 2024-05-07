@@ -54,10 +54,10 @@ const AdminReview = () => {
         <h1 className="my-3 text-[2.3rem] text-cust-white text-center">
           {post[0].title}
         </h1>
-        <div className="lg:flex-row  flex flex-col justify-center items-center text-cust-white px-3 pt-6">
-          <div className=" flex flex-col justify-center items-center  lg:w-[50%] lg:pt-4 lg:flex lg:flex-col lg:justify-center lg:items-center">
+        <div className="xl:pb-10 lg:flex-row  flex flex-col justify-center items-center text-cust-white px-3 pt-6">
+          <div className=" lg:pl-[5rem] xl:pl-[8rem] flex flex-col justify-center items-center  lg:w-[50%] lg:pt-4 lg:flex lg:flex-col lg:justify-center lg:items-center">
             <img
-              className="h-[14rem] rounded-lg my-3 lg:h-[20rem] lg:max-w-[26rem]"
+              className="h-[14rem] rounded-lg my-3 xl:max-h-[30rem] lg:h-[20rem] lg:max-w-[32rem]"
               src={post[0].secureImgURL}
               alt="No image"
             />
@@ -65,7 +65,7 @@ const AdminReview = () => {
             <p className="my-3">Created By: {post[0].author}</p>
           </div>
           <div className="lg:w-[50%] lg:h-[24rem]">
-            <p className="px-1 sm:px-10 lg:px-2 pb-10 lg:text-[18px]">
+            <p className="px-1 sm:px-10 lg:px-2 pb-10 lg:text-[18px] lg:pr-[5rem] xl:text-[22px] xl:pr-[8rem]">
               {post[0].maincontent}
             </p>
           </div>
