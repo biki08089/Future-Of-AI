@@ -11,7 +11,7 @@ These below technologies are used to built this website.👇<br>
 
 
 
-The main features of my project "Future AI" website.
+The main features of "Future AI" website.
 - **Authentication**:
   - **Signup**: Users can create an account on the website by providing necessary details like email, username, and password.
   - **Login**: Registered users can log in to their accounts using their credentials.
