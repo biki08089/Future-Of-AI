@@ -10,9 +10,9 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 const AdminReview = () => {
   const navigate = useNavigate();
 
-  localStorage.setItem("Profile", "Admin");
+  // localStorage.setItem("Profile", "Admin");
   const getValueFromLocal = localStorage.getItem("myValue");
-
+  const profile = localStorage.getItem("Profile");
   if (getValueFromLocal === "false") {
     navigate("/login");
   }
@@ -24,7 +24,11 @@ const AdminReview = () => {
   const myPost = post[0];
   console.log(myPost);
   if (!myPost) {
-    location.assign("/login/creatorspage");
+    if (profile == "Admin") {
+      location.assign("/login/admindashboard");
+    } else {
+      location.assign("/login/creatorspage");
+    }
   }
 
   const scroll = () => {
@@ -47,17 +51,24 @@ const AdminReview = () => {
       <div className="h-[100vh] bg-black  overflow-y-scroll">
         {/* <GoPrev /> */}
         <StatsAndFigs />
-        <div className="flex flex-col justify-center items-center text-cust-white px-3 pt-6">
-          <h1 className="my-3 text-[2.3rem]">{post[0].title}</h1>
-          <img
-            className="h-[14rem] rounded-lg my-3"
-            src={post[0].secureImgURL}
-            alt="No image"
-          />
-          <p className="my-3">Catagory: {post[0].catagory}</p>
-          <p className="my-3">Created By: {post[0].author}</p>
-
-          <p className="px-1 pb-10">{post[0].maincontent}</p>
+        <h1 className="my-3 text-[2.3rem] text-cust-white text-center">
+          {post[0].title}
+        </h1>
+        <div className="lg:flex-row  flex flex-col justify-center items-center text-cust-white px-3 pt-6">
+          <div className=" flex flex-col justify-center items-center  lg:w-[50%] lg:pt-4 lg:flex lg:flex-col lg:justify-center lg:items-center">
+            <img
+              className="h-[14rem] rounded-lg my-3 lg:h-[20rem] lg:max-w-[26rem]"
+              src={post[0].secureImgURL}
+              alt="No image"
+            />
+            <p className="my-3">Catagory: {post[0].catagory}</p>
+            <p className="my-3">Created By: {post[0].author}</p>
+          </div>
+          <div className="lg:w-[50%] lg:h-[24rem]">
+            <p className="px-1 sm:px-10 lg:px-2 pb-10 lg:text-[18px]">
+              {post[0].maincontent}
+            </p>
+          </div>
         </div>
       </div>
     </>
