@@ -4,19 +4,22 @@ import { useDispatch } from "react-redux";
 import { incAnddec } from "../redux/firstSlice/firstSlice";
 import { NavLink } from "react-router-dom";
 
-
 const Mymenu = ({ setCounter, myValue }) => {
   const dispatch = useDispatch();
   const valueFromLoc = localStorage.getItem("myValue");
 
+  const profile = localStorage.getItem("Profile");
+
+  console.log("Menu");
+  console.log(profile);
   const menuState = () => {
     dispatch(incAnddec());
     setCounter(myValue);
   };
- 
-  const removeMenu=()=>{
+
+  const removeMenu = () => {
     setCounter(0);
-  }
+  };
 
   return (
     <div
@@ -33,25 +36,57 @@ const Mymenu = ({ setCounter, myValue }) => {
       </div>
       <h1 className="text-center mt-8 mb-3">Hello! Want to explore</h1>
       <hr className="opacity-20" />
-      <NavLink to={valueFromLoc=="true"?"/login/dashboard":"/signup"}>
-        <p onClick={removeMenu} className="my-2 text-center hover:animate-pulse">
-          {valueFromLoc=="true"?<span>Dashboard</span>:<span>Sign up</span> }</p>
+      <NavLink
+        to={
+          valueFromLoc == "true"
+            ? profile == "Admin"
+              ? "/login/admindashboard"
+              : "/login/dashboard"
+            : "/signup"
+        }
+      >
+        <p
+          onClick={removeMenu}
+          className="my-2 text-center hover:animate-pulse"
+        >
+          {valueFromLoc == "true" ? (
+            profile == "Admin" ? (
+              <span>My Posts</span>
+            ) : (
+              <span>Dashboard</span>
+            )
+          ) : (
+            <span>Sign up</span>
+          )}
+        </p>
       </NavLink>
       <hr className="opacity-20" />
       <NavLink to="/login">
-        <p onClick={removeMenu} className="my-2 text-center hover:animate-pulse">
-        {valueFromLoc=="true"?<span>Logout</span>:<span>Login</span> }</p>
-
-         
+        <p
+          onClick={removeMenu}
+          className="my-2 text-center hover:animate-pulse"
+        >
+          {valueFromLoc == "true" ? <span>Logout</span> : <span>Login</span>}
+        </p>
       </NavLink>
       <hr className="opacity-20" />
 
       <NavLink to="/about">
-        <p onClick={removeMenu} className="my-2 text-center hover:animate-pulse">About Us</p>
+        <p
+          onClick={removeMenu}
+          className="my-2 text-center hover:animate-pulse"
+        >
+          About Us
+        </p>
       </NavLink>
       <hr className="opacity-20" />
       <NavLink to="/contact">
-        <p onClick={removeMenu} className="my-2 text-center hover:animate-pulse">Contact Us</p>
+        <p
+          onClick={removeMenu}
+          className="my-2 text-center hover:animate-pulse"
+        >
+          Contact Us
+        </p>
       </NavLink>
       <hr className="opacity-20" />
     </div>
