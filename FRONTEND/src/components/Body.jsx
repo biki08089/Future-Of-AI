@@ -30,7 +30,7 @@ const Body = () => {
   }
 
   return (
-    <div className="relative">
+    <div className="relative overflow-x-hidden">
       <div className=" h-[1.5rem] w-[2rem] rounded-xl absolute left-3 animate-bounceb mt-4 z-[1]  text-cust-white bg-cust-black flex justify-center items-center">
         <FaArrowLeftLong onClick={goBack} />
       </div>
