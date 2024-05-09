@@ -1,5 +1,5 @@
 <h1>Future od AI</h1>
-This web app is related to "Artificial Intelligence".You will find content related to  The future uses of AI in different fields inside this web app
+This "WEB APP" is related to "Artificial Intelligence".You will find content related to  The future uses of AI in different fields inside this web app
 
 These below technologies are used to built this web app.👇<br>
 [![My Skills](https://skillicons.dev/icons?i=html,css,tailwind,js,react,nodejs,express,mongodb)](https://skillicons.dev)
