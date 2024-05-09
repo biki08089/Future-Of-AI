@@ -26,8 +26,8 @@ The main features of "Future AI" web app.
     - Regular users have access to basic features and functions, tailored to their needs and preferences.
 
 - **Responsive Design**:
-  The web app is designed to be responsive, ensuring a seamless user experience across different devices and screen sizes.
-  Whether users access the app from a desktop, tablet, or mobile device, they can navigate and use its features comfortably.
+  - The web app is designed to be responsive, ensuring a seamless user experience across different devices and screen sizes.
+  - Whether users access the app from a desktop, tablet, or mobile device, they can navigate and use its features comfortably.
 
 - **Admin Page**:
   - **Creation and publication of posts**: Admin users can create their own posts and publish them to the public.
