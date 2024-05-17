@@ -3,6 +3,7 @@ import { HiUser } from "react-icons/hi2";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch } from "react-redux";
 import { setProfiletrue } from "../redux/firstSlice/firstSlice";
+import { motion } from "framer-motion"
 
 const ProfileDetails = ({profileDetails}) => {
      const dispatch=useDispatch()
@@ -11,7 +12,10 @@ const ProfileDetails = ({profileDetails}) => {
       id="profile"
       className=" h-screen w-full bg-black fixed z-20 top-0 left-0 flex justify-center items-center "
     >
-      <div className="max-h-[17rem] w-[18rem] rounded-3xl bg-cust-bg px-3 pt-3 relative">
+      <motion.div animate={{scale:1.1}} initial={{scale:0}} transition={{
+        type:"spring",
+        stiffness:150
+      }}  className="max-h-[17rem] w-[18rem] rounded-3xl bg-cust-bg px-3 pt-3 relative">
         <RxCross2
           size="20"
           className="absolute top-2 right-3"
@@ -34,7 +38,7 @@ const ProfileDetails = ({profileDetails}) => {
             {profileDetails.acountType}
           </p>
         </div>
-      </div>
+      </ motion.div>
     </div>
   );
 };
