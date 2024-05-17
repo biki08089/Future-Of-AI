@@ -12,7 +12,7 @@ const ProfileDetails = ({profileDetails}) => {
       id="profile"
       className=" h-screen w-full bg-black fixed z-20 top-0 left-0 flex justify-center items-center "
     >
-      <motion.div animate={{scale:0.8}} initial={{scale:0}} transition={{
+      <motion.div animate={{scale:1}} initial={{scale:0}} transition={{
         type:"spring",
         stiffness:150
       }}  className="max-h-[17rem] w-[18rem] rounded-3xl bg-cust-bg px-3 pt-3 relative">
