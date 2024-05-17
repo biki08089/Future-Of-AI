@@ -11,7 +11,7 @@ const ProfileDetails = ({profileDetails}) => {
       id="profile"
       className=" h-screen w-full bg-black fixed z-20 top-0 left-0 flex justify-center items-center "
     >
-      <div className="max-h-[17rem] w-[16rem] rounded-3xl bg-cust-bg px-3 pt-3 relative">
+      <div className="max-h-[17rem] w-[18rem] rounded-3xl bg-cust-bg px-3 pt-3 relative">
         <RxCross2
           size="20"
           className="absolute top-2 right-3"
