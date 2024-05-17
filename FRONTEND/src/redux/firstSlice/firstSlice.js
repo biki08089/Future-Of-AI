@@ -9,12 +9,20 @@ const initialState = {
   passType:false,
   passType2nd:false,
   navBarUpdated:null,
+  profile:false,
+  profileDetails:null
 };
 
 const menuSlice = createSlice({
   name: "menu",
   initialState,
   reducers: {
+    setProfileDetails:(state,action)=>{
+     state.profileDetails=action.payload;
+    },
+    setProfiletrue:(state,action)=>{
+        state.profile=action.payload
+    },
     navBarUpdated:(state,action)=>{
       state.navBarUpdated=action.payload
     },
@@ -58,6 +66,6 @@ const menuSlice = createSlice({
   },
 });
 
-export const {navBarUpdated,changePasstype,changePasstype2nd, incAnddec, updateuserData, userStatusLogin, userStatusLogout ,userSignUp,userSignUpfalse, readPostOnClick} =
+export const {setProfileDetails,setProfiletrue,navBarUpdated,changePasstype,changePasstype2nd, incAnddec, updateuserData, userStatusLogin, userStatusLogout ,userSignUp,userSignUpfalse, readPostOnClick} =
   menuSlice.actions;
 export default menuSlice.reducer;

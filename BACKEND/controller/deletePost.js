@@ -15,12 +15,6 @@ const deletePost=async(req,res)=>{
             post:deletePost,
             massage:"Post deleted successfully."
         })
-      
-      
-
-      
-
-
 
     } catch (error) {
         console.log(error);

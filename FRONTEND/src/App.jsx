@@ -22,10 +22,14 @@ import Admin from "./pages/Admin";
 import Createpost from "./pages/Createpost";
 import AdminReview from "./pages/AdminReview";
 import CreatorsPage from "./pages/CreatorsPage";
+import ProfileDetails from "./components/ProfileDetails";
 
 function App() {
   const [counter, setCounter] = useState(0);
   const myValue = useSelector((state) => state.menu.value);
+  const profile = useSelector((state) => state.menu.profile);
+  const profileDetails = useSelector((state) => state.menu.profileDetails);
+
 
   useEffect(() => {
     AOS.init({
@@ -40,16 +44,24 @@ function App() {
     <div className="relative">
       {counter == 1 ? <Mymenu setCounter={setCounter} myValue={myValue} /> : ""}
       <Mynav className="" setCounter={setCounter} myValue={myValue}></Mynav>
-      <div id="parentContainer" className="bg-cust-white shadow-3xl">
+      <div id="parentContainer" className="bg-cust-white shadow-3xl relative">
+        {profile ? (
+          <ProfileDetails profileDetails={profileDetails}/>
+        ) : (
+          <h1></h1>
+        )}
         <Routes>
-          <Route path="/" element={<MainContainer/>}>
+          <Route path="/" element={<MainContainer />}>
             <Route index element={<Body />} />
             <Route path="/login" element={<Login />} />
             <Route path="/login/dashboard" element={<Dashboard />} />
-            <Route path="/login/creatorspage" element={<CreatorsPage/>}/>
-            <Route path="/login/admindashboard" element={<Admin/>}/>
-            <Route path="/admindashboard/createpost" element={<Createpost/>}/>
-            <Route path="/admindashboard/reviewpost" element={<AdminReview/>}/>
+            <Route path="/login/creatorspage" element={<CreatorsPage />} />
+            <Route path="/login/admindashboard" element={<Admin />} />
+            <Route path="/admindashboard/createpost" element={<Createpost />} />
+            <Route
+              path="/admindashboard/reviewpost"
+              element={<AdminReview />}
+            />
             <Route path="/dashboard/content" element={<Content />}></Route>
             <Route path="/dashboard/wishlist" element={<Whishlist />}></Route>
             <Route path="/login/forgotPass" element={<UpdatePassword />} />
@@ -67,3 +79,34 @@ function App() {
 }
 
 export default App;
+
+
+{/* <div
+id="profile"
+className=" h-screen w-full bg-black fixed z-20 top-0 left-0 flex justify-center items-center "
+>
+<div className="max-h-[17rem] w-[16rem] rounded-3xl bg-cust-bg px-3 pt-3 relative">
+  <RxCross2
+    size="20"
+    className="absolute top-2 right-3"
+    onClick={() => {
+      dispatch(setProfiletrue(false));
+    }}
+  />
+  <div className=" flex flex-col gap-4 justify-center items-center my-6">
+    <HiUser
+      size="50"
+      className="text-cust-white bg-black p-2 rounded-full"
+    />
+    <p className="bg-cust-black text-[14px] text-cust-white w-[90%] px-4 py-2 text-center rounded-full shadow-3xl">
+      {profileDetails.name}
+    </p>
+    <p className="bg-cust-black text-[14px] text-cust-white w-[90%] px-4 py-2 text-center rounded-full shadow-3xl">
+      {profileDetails.email}
+    </p>
+    <p className="bg-cust-black text-[14px] text-cust-white w-[90%] px-4 py-2 text-center rounded-full shadow-3xl">
+      {profileDetails.acountType}
+    </p>
+  </div>
+</div>
+</div> */}

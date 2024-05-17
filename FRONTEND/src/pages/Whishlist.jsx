@@ -25,7 +25,7 @@ const Whishlist = () => {
   likeData.forEach((element) => {
     newArr.push(element.id);
   });
-  console.log(newArr);
+
 
   localStorage.setItem("Profile","Regular")
   const getValueFromLocal = localStorage.getItem("myValue");
@@ -56,7 +56,7 @@ const Whishlist = () => {
     const filteredArr = myData.filter((each) => {
       return each.id == event.target.parentElement.id;
     });
-    console.log(filteredArr);
+
 
     let URL;
   
@@ -101,7 +101,7 @@ const Whishlist = () => {
       body: JSON.stringify(data),
     });
     const res = await getData.json();
-    console.log(res);
+  
     const items = res.data[0].items.concat(
       res.data[0].itemsLikedfromCreatorPage
     );

@@ -55,7 +55,7 @@ const Dashboard = () => {
     const filteredArr = myData.blogs.filter((each) => {
       return each.id == event.target.parentElement.id;
     });
-    console.log(filteredArr);
+ 
     const value = event.target.parentElement.getAttribute("name");
     //This is the data we will send to backend....
     const data = {
@@ -127,7 +127,6 @@ const Dashboard = () => {
 
   useEffect(() => {
     getDatafromDB();
-    console.log("Biki");
   }, []);
   // sm:grid sm:grid-cols-2 sm:grid-rows-5 sm:gap-x-1 sm:gap-y-4
   return (

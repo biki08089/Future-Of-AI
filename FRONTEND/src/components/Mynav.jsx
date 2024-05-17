@@ -31,7 +31,7 @@ const Mynav = ({ setCounter, myValue }) => {
   let navBarUpdt = useSelector((state) => {
     return state.menu.navBarUpdated;
   });
-  console.log(navBarUpdt)
+
   // setValue(navBarUpdt);
 
   const menuState = () => {

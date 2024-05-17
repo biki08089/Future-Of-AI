@@ -22,7 +22,7 @@ const AdminReview = () => {
   });
 
   const myPost = post[0];
-  console.log(myPost);
+ 
   if (!myPost) {
     if (profile == "Admin") {
       location.assign("/login/admindashboard");

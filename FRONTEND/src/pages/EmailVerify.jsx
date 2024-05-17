@@ -10,11 +10,11 @@ const EmailVerify = () => {
   const [load, setLoad] = useState(false);
   const { register, handleSubmit } = useForm();
   let userData = useSelector((state) => state.menu.userData);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const user = {
     name: userData.fullname,
     email: userData.email,
-    acountType:userData.acountType,
+    acountType: userData.acountType,
     password: userData.password,
   };
 
@@ -38,16 +38,15 @@ const EmailVerify = () => {
     const responseMassage = storeResponse.massage;
     setLoad(true);
     if (responseIs) {
-      console.log("Success")
-      toast.success(responseMassage,{className:"bg-black"});
+      toast.success(responseMassage, { className: "bg-black" });
       setTimeout(() => {
-        navigate("/login")
-      },5000);
+        navigate("/login");
+      }, 5000);
     } else {
       toast.error(responseMassage);
       setTimeout(() => {
-        navigate("/signup")
-      },5000);
+        navigate("/signup");
+      }, 5000);
     }
   };
   return (

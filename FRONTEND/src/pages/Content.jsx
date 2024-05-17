@@ -12,7 +12,6 @@ const Content = () => {
 
 
   if (getValueFromLocal === "false") {
-    console.log("Login first");
     navigate("/login");
   }
 
@@ -21,7 +20,6 @@ const Content = () => {
   });
 
   const readMore = data[0];
-  console.log(readMore);
 
   if (!readMore) {
     location.assign("/login/dashboard");

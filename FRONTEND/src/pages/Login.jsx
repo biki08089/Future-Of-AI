@@ -49,7 +49,7 @@ const Login = () => {
       body: JSON.stringify(data),
     });
     const response = await userLogin.json();
-    console.log(response);
+   
     const token = response.token;
     const responseIs = response.success;
     if (responseIs) {

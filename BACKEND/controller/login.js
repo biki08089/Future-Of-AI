@@ -10,7 +10,7 @@ const login = async (req, res) => {
 
     //Check the user if registered or not.
     let existingUser = await userSchema.findOne({ email });
-    console.log(existingUser);
+  
     if (!existingUser) {
       return res.status(200).json({
         success: false,

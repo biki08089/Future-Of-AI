@@ -65,7 +65,7 @@ const CreatorsPage = () => {
     const responseData = response.userData.items.concat(
       response.userData.itemsLikedfromCreatorPage
     );
-    console.log(response);
+
 
     let newArr = [];
     responseData.forEach((element) => {
@@ -92,7 +92,7 @@ const CreatorsPage = () => {
       body: JSON.stringify(data),
     });
     const res = await getData.json();
-    console.log(res);
+  
     const newArrOflikes = res.data[0].items.concat(
       res.data[0].itemsLikedfromCreatorPage
     );

@@ -8,6 +8,7 @@ const initialState = {
   getData: [],
   readMore: [],
   wishlistedArr: [],
+  
 };
 
 const apiSlice = createSlice({

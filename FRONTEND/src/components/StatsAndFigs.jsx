@@ -6,17 +6,21 @@ const VITE_BASE_URL = import.meta.env.VITE_BASE_URL;
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { HiUser } from "react-icons/hi2";
+import { useDispatch } from "react-redux";
+import { setProfiletrue,setProfileDetails } from "../redux/firstSlice/firstSlice";
+
 
 const StatsAndFigs = () => {
+  const dispatch=useDispatch();
   const [like, setLike] = useState(0);
   const [read, setRead] = useState(0);
   const [acountType, setAcountType] = useState(null);
-  console.log(acountType);
+  
 
   const post = useSelector((state) => {
     return state.menu.readPost;
   });
-  console.log(post);
+ 
 
   const postID = post[0]._id;
 
@@ -36,7 +40,7 @@ const StatsAndFigs = () => {
     });
 
     const response = await getData.json();
-    console.log(response);
+    dispatch(setProfileDetails(response.user));
 
     //total numbers of likes...
     if (response.likeData === null) {
@@ -67,7 +71,7 @@ const StatsAndFigs = () => {
       {acountType == "Admin" ? (
         <div className="flex flex-col items-center mt-2">
           <div className="h-[4rem] bg-black flex justify-center items-center">
-            <div className="h-[2.5rem] w-[8rem] text-[18px] font-medium bg-cust-white rounded-[3rem] flex justify-center  items-center">
+            <div onClick={()=>{dispatch(setProfiletrue(true))}} className="h-[2.5rem] w-[8rem] text-[18px] font-medium bg-cust-white rounded-[3rem] flex justify-center  items-center">
               <HiUser className="mr-2" />
               Admin
             </div>
@@ -91,7 +95,7 @@ const StatsAndFigs = () => {
         </div>
       ) : (
         <div className="h-[4rem] bg-black flex justify-center items-center">
-          <div className="h-[2.5rem] w-[8rem] text-[18px] font-medium bg-cust-white rounded-[3rem] flex justify-center  items-center">
+          <div onClick={()=>{dispatch(setProfiletrue(true))}} className="h-[2.5rem] w-[8rem] text-[18px] font-medium bg-cust-white rounded-[3rem] flex justify-center  items-center">
             <HiUser className="mr-2" />
             Regular
           </div>

@@ -10,8 +10,7 @@ const Mymenu = ({ setCounter, myValue }) => {
 
   const profile = localStorage.getItem("Profile");
 
-  console.log("Menu");
-  console.log(profile);
+ 
   const menuState = () => {
     dispatch(incAnddec());
     setCounter(myValue);

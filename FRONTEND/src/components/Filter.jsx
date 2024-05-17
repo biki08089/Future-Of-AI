@@ -19,7 +19,7 @@ const Filter = () => {
 
     dispatch(storeAPIdata(response));
     dispatch(updateToDefault(blogpage))
-    console.log(apiData);
+  
   };
 
    const reload=()=>{

@@ -19,7 +19,7 @@ const verifyOtp = async (req, res) => {
         
       }
       validation();
-      console.log(newName)
+    
 
 
     const checkOTP = await OTP.findOne({ otp });
@@ -45,6 +45,10 @@ const verifyOtp = async (req, res) => {
       
     } catch (error) {
       console.log(error);
+      res.status(500).json({
+        success:false,
+        massage:"Unable to hash the password."
+      })
     }
     // create and save user inside DB
     const createUser = await userSchema.create({

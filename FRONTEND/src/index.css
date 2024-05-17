@@ -95,3 +95,9 @@ body {
 textarea{
   resize: none;
 }
+
+#profile{
+  background-color: rgba(0, 0, 0, 0.61);
+    
+backdrop-filter: blur(4px);
+}
