@@ -17,13 +17,7 @@ body {
   width: 0;
   }
 
-  /* ::-webkit-scrollbar-track{
-    background-color: rgb(246, 248, 248);
-  }
 
-  ::-webkit-scrollbar-thumb{
-    background-color: black;
-  } */
 
 .filter {
   background: url("../public/gradient.webp");
