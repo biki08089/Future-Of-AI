@@ -35,7 +35,7 @@ const CreatorsPage = () => {
   const loadPost = async () => {
     const getAllPost = await fetch(`${VITE_BASE_URL}/login/dashboard/allpost`);
     const response = await getAllPost.json({});
-    setAllpost(response.post);
+    setAllpost(response.post.reverse());
   };
 
   //This function is a reusable function which will run for both readmore button click and like button click
@@ -146,7 +146,7 @@ const CreatorsPage = () => {
           ) : (
             <div className="sm:px-[5rem] sm:flex sm:flex-col sm:justify-center sm:items-center">
               <h1 className="py-2 px-4 bg-black w-[8rem] text-center rounded-lg  text-cust-white font-medium">
-                <span className="animate-pulseeb">Posts </span>
+                <span className="animate-pulseeb">Recent Posts </span>
               </h1>
               <div className="sm:flex sm:flex-wrap sm:justify-center ">
                 {allPost.map((eachPost) => {

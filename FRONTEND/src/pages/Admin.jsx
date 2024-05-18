@@ -45,7 +45,7 @@ const Admin = () => {
     const response = await getPost.json();
     if (response.success) {
       toast.success(response.massage);
-      setPost(response.post);
+      setPost(response.post.reverse());
     } else {
       toast.error(response.massage);
     }
@@ -109,8 +109,8 @@ const Admin = () => {
           </div>
         ) : (
           <div className="sm:px-[5rem] sm:flex sm:flex-col sm:justify-center sm:items-center">
-              <h1 className="py-2 px-4 bg-black w-[7.5rem] text-center rounded-lg animate-bounceb text-dark-green">
-                Your Posts
+              <h1 className="py-2 px-4 bg-black w-[11rem] text-center rounded-lg animate-bounceb text-dark-green">
+                Your Recent Posts
               </h1>
             <div className="sm:flex sm:flex-wrap sm:justify-center ">
               {allPost.map((eachPost) => {

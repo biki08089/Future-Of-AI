@@ -55,12 +55,13 @@ const Dashboard = () => {
     const filteredArr = myData.blogs.filter((each) => {
       return each.id == event.target.parentElement.id;
     });
- 
+     console.log(filteredArr)
     const value = event.target.parentElement.getAttribute("name");
     //This is the data we will send to backend....
     const data = {
       id: filteredArr[0].id,
       title: filteredArr[0].title,
+      author:filteredArr[0].createdBy,
       tag: filteredArr[0].tag,
       description: filteredArr[0].description,
       image: filteredArr[0].image,
@@ -160,6 +161,7 @@ const Dashboard = () => {
                 <p className="font-semibold text-[15px] text-light-sky">
                   Catagory : {eachObj.tag}
                 </p>
+                <p className="font-semibold mt-1 mb-2 text-[0.8rem]">Created By: {eachObj.createdBy}</p>
                 <p>{eachObj.description.substring(0, 150)}...</p>
 
                 <div className="flex items-center justify-between">

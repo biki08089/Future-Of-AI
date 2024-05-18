@@ -9,6 +9,10 @@ const wishlistSchema=new mongoose.Schema({
         type:String,
         require:true,
     },
+    author:{
+        type:String,
+        require:true,
+    },
     tag:{
         type:String,
         require:true,

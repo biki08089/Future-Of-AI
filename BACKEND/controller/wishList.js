@@ -3,7 +3,7 @@ const itemsWishlisted = require("../model/wishListedItems");
 
 const wishList = async (req, res) => {
   try {
-    const { id, title, email, description, tag, image, value } = req.body;
+    const { id, title,author,email, description, tag, image, value } = req.body;
 
     let createWishList;
     let wishListedItems;
@@ -12,6 +12,7 @@ const wishList = async (req, res) => {
       createWishList = await wishlistSchema.create({
         id,
         title,
+        author,
         tag,
         image,
         description,

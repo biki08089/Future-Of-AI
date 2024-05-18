@@ -32,7 +32,7 @@ const createPost = async (req, res) => {
     const author = user.name;
 
     //check if file format is supported or not....
-    const supportedTypes = ["jpeg", "jpg", "png", "svg"];
+    const supportedTypes = ["jpeg", "jpg", "png", "svg","webp"];
     const fileType = file.name.split(".")[1].toLowerCase();
 
     if (!supportedTypes.includes(fileType)) {

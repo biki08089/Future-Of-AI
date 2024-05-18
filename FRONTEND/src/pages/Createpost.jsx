@@ -104,7 +104,7 @@ const Createpost = () => {
                 </label>
                 <br />
                 <input
-                  className="border h-8  mb-3 rounded-md w-[100%]"
+                  className="border h-8  mb-3 pl-2 rounded-md w-[100%]"
                   type="text"
                   name="title"
                   id=""

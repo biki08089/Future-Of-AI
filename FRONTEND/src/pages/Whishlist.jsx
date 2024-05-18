@@ -19,6 +19,7 @@ const Whishlist = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [likeData, setLikedata] = useState([]);
+  const [noPost,setNoPost]=useState(true)
   // const [myData,setMydata]=useState([]);
 
   let newArr = [];
@@ -37,7 +38,7 @@ const Whishlist = () => {
     return state.myAPI.wishlistedArr;
   });
   // setMydata(wishlistData)
-  // console.log(myData);
+  console.log(myData);
   const loginStatus = () => {
     dispatch(userStatusLogout());
     dispatch(userSignUp());
@@ -110,6 +111,10 @@ const Whishlist = () => {
     localStorage.setItem("totalCartItems", items.length);
     setLikedata(res.data[0].itemsLikedfromCreatorPage);
   };
+  
+  setTimeout(() => {
+    setNoPost(false)
+  },5000);
 
   useEffect(() => {
     getDatafromDB();
@@ -121,8 +126,9 @@ const Whishlist = () => {
       <GoPrev />
 
       {myData.length == 0 ? (
-        <div className="h-[100vh] bg-cust-black flex justify-center items-center">
-          <LoadingPage />
+        <div className="h-[100vh] bg-cust-black flex justify-center items-center text-cust-white">
+          {noPost?
+          <LoadingPage />:<h1>You haven't added anything to wishlist !</h1>}
         </div>
       ) : (
         <div className="flex flex-col items-center bg-cust-black min-h-8 2xl:h-[100vh] 2xl:overflow-scroll">
@@ -146,6 +152,7 @@ const Whishlist = () => {
                   <p className="font-semibold text-[15px] text-light-sky">
                     Catagory : {eachObj.tag}
                   </p>
+                  <p className="font-semibold mt-1 mb-2 text-[0.8rem]">Created By : {eachObj.author}</p>
                   <p>{eachObj.description.substring(0, 150)}...</p>
 
                   <div className="flex items-center justify-between">
