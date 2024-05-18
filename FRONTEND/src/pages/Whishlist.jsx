@@ -144,7 +144,7 @@ const Whishlist = () => {
                   className="w-[17rem] max-h-[31rem] sm:m-3 bg-cust-bg shadow-3xl my-5 py-4 px-3 rounded-[0.8rem]"
                 >
                   <img
-                    className="rounded-lg mb-3 mx-auto h-[11rem]"
+                    className="rounded-lg mb-3 mx-auto max-h-[11rem]"
                     src={eachObj.image}
                     alt="../public/AI-IMG.webp"
                   />
