@@ -38,7 +38,7 @@ const Whishlist = () => {
     return state.myAPI.wishlistedArr;
   });
   // setMydata(wishlistData)
-  console.log(myData);
+
   const loginStatus = () => {
     dispatch(userStatusLogout());
     dispatch(userSignUp());

@@ -20,6 +20,7 @@ const Content = () => {
   });
 
   const readMore = data[0];
+  console.log(readMore)
 
   if (!readMore) {
     location.assign("/login/dashboard");
@@ -54,6 +55,9 @@ const Content = () => {
         />
         <p data-aos="fade-right" className="font-semibold mb-2 text-light-sky">
           Catagory : {readMore.tag}
+        </p>
+        <p data-aos="fade-right" className=" mb-2">
+         Created by : {readMore.createdBy || readMore.author}
         </p>
 
         <p
