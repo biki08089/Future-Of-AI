@@ -131,7 +131,7 @@ const Whishlist = () => {
           <LoadingPage />:<h1>You haven't added anything to wishlist !</h1>}
         </div>
       ) : (
-        <div className="flex flex-col items-center bg-cust-black min-h-8 2xl:h-[100vh] 2xl:overflow-scroll">
+        <div  id="contentDiv" className="flex flex-col items-center bg-cust-black min-h-8 2xl:h-[100vh] 2xl:overflow-scroll">
           <div>
             <h1 className="mt-5 mb-2 text-cust-white">My Wishlists</h1>
           </div>
