@@ -143,7 +143,7 @@ const Dashboard = () => {
           <LoadingPage />
         </div>
       ) : (
-        <div className="flex flex-col sm:flex-row sm:flex-wrap sm:justify-center items-center bg-cust-black min-h-8">
+        <div id="contentDiv" className="flex flex-col sm:flex-row sm:flex-wrap sm:justify-center items-center bg-cust-black min-h-8">
           {blogData.map((eachObj) => {
             return (
               // <div className=" flex justify-center items-center">

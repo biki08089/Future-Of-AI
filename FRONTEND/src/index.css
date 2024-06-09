@@ -70,6 +70,17 @@ body {
     height: 53rem ;
   }
 }
+@media screen and (min-width: 1480px) and (max-width: 1699px){
+
+  #contentDiv{
+    width: 170vh;
+    margin: 0 auto;
+  }
+
+  #parentContainer{
+    background-color: #191717;
+  }
+}
 
 /* HTML: <div class="loader"></div> */
 .loader {
