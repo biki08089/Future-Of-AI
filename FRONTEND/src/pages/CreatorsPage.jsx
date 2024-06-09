@@ -152,7 +152,8 @@ const CreatorsPage = () => {
                 {allPost.map((eachPost) => {
                   return (
                     <div
-                      id={eachPost._id}
+                    data-aos="zoom-in"
+                    id={eachPost._id}
                       className="max-h-[33rem] m-3 w-[17rem] lg:w-[19rem] px-[1rem] py-[1rem] rounded-xl bg-cust-white my-6"
                       key={eachPost._id}
                     >
