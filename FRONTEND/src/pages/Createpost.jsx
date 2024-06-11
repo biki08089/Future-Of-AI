@@ -37,11 +37,11 @@ const Createpost = () => {
     const myForm = document.querySelector("form");
     var formData = new FormData(myForm);
     formData.append("email", email);
+    
     //  let item;
     //  for(item of formData){
     //   console.log(item[0],item[1])
     //  }
-
     const sendPostDet = await fetch(`${VITE_BASE_URL}/admin/createpost`, {
       method: "POST",
       mode: "cors",

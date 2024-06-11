@@ -17,6 +17,8 @@ const deletePost = require("../controller/deletePost");
 const likeAndRead = require("../controller/likeAndRead");
 const getUserLike_readData = require("../controller/getUserLike_readData");
 const userSchema = require("../model/userSchema");
+const profilePicUpload = require("../controller/profilePicUpload");
+const deleteAccount = require("../controller/deleteAccount");
 
 router.post("/signup/verify", sendAndSaveOTP);
 router.post("/signup/verify/email", verifyOtp);
@@ -28,6 +30,8 @@ router.post("/login/forgotPass/updatePass", updatePassword);
 router.post("/dashboard/wishlist", wishList);
 router.post("/like_read", likeAndRead);
 router.post("/getuserData", getUserLike_readData);
+router.post("/user/profileupload",profilePicUpload)
+router.post("/delete/account",deleteAccount)
 router.post("/dasboard", async (req, res) => {
   try {
     const { email } = req.body;
@@ -75,6 +79,7 @@ router.post("/admin/getpost", async (req, res) => {
   }
 });
 
+
 router.post("/getuser", async (req, res) => {
   try {
     const { email } = req.body;
@@ -92,6 +97,7 @@ router.post("/getuser", async (req, res) => {
     });
   }
 });
+
 
 router.get("/login/dashboard/allpost", async (req, res) => {
   try {

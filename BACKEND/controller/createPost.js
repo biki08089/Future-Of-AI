@@ -65,6 +65,7 @@ const createPost = async (req, res) => {
     );
     const response = uploadFileToCloud;
     const secureImgURL = response.secure_url;
+    
     // Check if same post alredy exists..
     const existingPost = await myPOST.findOne({ maincontent });
     const existingPostTitle = await myPOST.findOne({ title:newTitle });

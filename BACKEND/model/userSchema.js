@@ -13,6 +13,10 @@ const myschema=new mongoose.Schema({
         type:String,
         require:true,
     },
+    profilePicUrl:{
+        type:String,
+        require:true,
+    },
     password:{
         type:String,
         require:true,
