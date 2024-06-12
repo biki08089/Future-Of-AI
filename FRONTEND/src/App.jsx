@@ -28,7 +28,7 @@ function App() {
   const [counter, setCounter] = useState(0);
   const myValue = useSelector((state) => state.menu.value);
   const profile = useSelector((state) => state.menu.profile);
-  const profileDetails = useSelector((state) => state.menu.profileDetails);
+  // const profileDetails = useSelector((state) => state.menu.profileDetails);
 
 
   useEffect(() => {
