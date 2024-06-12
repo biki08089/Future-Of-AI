@@ -20,7 +20,6 @@ const Profile = () => {
   const getProfileData = async () => {
     console.log("i am running");
 
-
     const emailFromlocal = localStorage.getItem("email");
     const data = {
       email: emailFromlocal,
@@ -36,10 +35,7 @@ const Profile = () => {
     const response = await getData.json();
     // setUserdata(response.user);
     dispatch(setProfileDetails(response.user));
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-    // dispatch(setProfiletrue(true));
+    setLoading(false);
   };
 
   const userDet = () => {
@@ -61,7 +57,11 @@ const Profile = () => {
         ) : (
           <div className="flex justify-center  items-center h-[100%]">
             {profileDetails.profilePicUrl ? (
-              <img className="h-[30px] w-[30px] rounded-full mr-2" src={profileDetails.profilePicUrl} alt="" />
+              <img
+                className="h-[30px] w-[30px] rounded-full mr-2"
+                src={profileDetails.profilePicUrl}
+                alt=""
+              />
             ) : (
               <HiUser className="mr-2 text-cust-black" />
             )}
