@@ -46,7 +46,7 @@ function App() {
       <Mynav className="" setCounter={setCounter} myValue={myValue}></Mynav>
       <div id="parentContainer" className="bg-cust-white shadow-3xl relative">
         {profile ? (
-          <ProfileDetails profileDetails={profileDetails}/>
+          <ProfileDetails/>
         ) : (
           <h1></h1>
         )}

@@ -13,7 +13,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 
-const ProfileDetails = ({ profileDetails }) => {
+const ProfileDetails = () => {
   const [uploadProfilePic, setuploadProfilePic] = useState(false);
   const [loading, setLoading] = useState(true);
   const [userDet, setUserDet] = useState();
