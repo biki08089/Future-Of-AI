@@ -12,14 +12,14 @@ const VITE_BASE_URL = import.meta.env.VITE_BASE_URL;
 const Profile = () => {
   const profileDetails = useSelector((state) => state.menu.profileDetails);
   console.log(profileDetails);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
   const user = localStorage.getItem("Profile");
 
   const getProfileData = async () => {
     console.log("i am running");
-    setLoading(true);
+
 
     const emailFromlocal = localStorage.getItem("email");
     const data = {
