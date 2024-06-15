@@ -50,22 +50,22 @@ const Profile = () => {
       <div
         onClick={userDet}
         data-aos="zoom-in"
-        className="h-[2.5rem] w-[8rem] text-[16px] font-medium bg-cust-white rounded-[3rem] flex justify-center  items-center "
+        className="h-[2.5rem] w-[7.3rem] text-[16px] font-medium bg-cust-white rounded-[3rem] flex justify-center  items-center "
       >
         {loading ? (
           <div className="loaderForProfile"></div>
         ) : (
-          <div className="flex justify-center  items-center h-[100%]">
+          <div className="h-[100%] w-[100%] rounded-[3rem] flex justify-around items-center">
             {profileDetails.profilePicUrl ? (
               <img
-                className="h-[30px] w-[30px] rounded-full mr-2"
+                className="h-[30px] w-[30px] rounded-full ml-[3px]"
                 src={profileDetails.profilePicUrl}
                 alt=""
               />
             ) : (
-              <HiUser className="mr-2 text-cust-black" />
+              <HiUser className="h-[20px] w-[20px] ml-[3px] text-cust-black" />
             )}
-            {profileDetails.acountType}
+            <p className="mr-[5px]">{profileDetails.acountType}</p>
           </div>
         )}
       </div>

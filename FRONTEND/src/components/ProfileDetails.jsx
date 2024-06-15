@@ -12,41 +12,41 @@ import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-
 const ProfileDetails = () => {
   const [uploadProfilePic, setuploadProfilePic] = useState(false);
   const [loading, setLoading] = useState(true);
   const [userDet, setUserDet] = useState();
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
+  const deleteAcc = async () => {
+    const result = confirm("Are you sure, you want to delete your account ? ");
+    if (result) {
+      dispatch(setProfiletrue(false));
+      const data = {
+        email: localStorage.getItem("email"),
+      };
 
- const deleteAcc=async()=>{
-  dispatch(setProfiletrue(false));
-  const data = {
-    email: localStorage.getItem("email"),
+      const deleteUser = await fetch(`${VITE_BASE_URL}/delete/account`, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const res = await deleteUser.json();
+      if (res.success) {
+        toast.success(res.massage);
+
+        navigate("/login");
+      } else {
+        toast.error(res.massage);
+      }
+    }
   };
-
-  const deleteUser = await fetch(`${VITE_BASE_URL}/delete/account`, {
-    method: "POST",
-    mode: "cors",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-
-  const res=await deleteUser.json();
-  if(res.success){
-    toast.success(res.massage);
-  
-    navigate("/login")
-  }else{
-    toast.error(res.massage);
-  }
- }
-
 
   const uploadProfile = async (event) => {
     setLoading(true);
@@ -63,13 +63,13 @@ const ProfileDetails = () => {
     });
 
     const res = await uploadPic.json();
-    console.log(res)
-    if(res.success){
+    console.log(res);
+    if (res.success) {
       setLoading(false);
       setuploadProfilePic(false);
-      toast.success(res.massage)
-    }else{
-      toast.error(res.massage)
+      toast.success(res.massage);
+    } else {
+      toast.error(res.massage);
     }
   };
 
@@ -133,7 +133,11 @@ const ProfileDetails = () => {
             {!uploadProfilePic ? (
               <div className=" flex flex-col gap-4 justify-center items-center my-6">
                 {userDet.profilePicUrl ? (
-                  <img className="h-[5rem] w-[5rem] rounded-full" src={userDet.profilePicUrl} alt="" />
+                  <img
+                    className="h-[5rem] w-[5rem] rounded-full"
+                    src={userDet.profilePicUrl}
+                    alt=""
+                  />
                 ) : (
                   <HiUser
                     size="50"
@@ -160,7 +164,10 @@ const ProfileDetails = () => {
                 <p className="bg-cust-black text-[14px] text-cust-white w-[90%] px-4 py-2 text-center rounded-full shadow-3xl">
                   {userDet.acountType}
                 </p>
-                <button onClick={deleteAcc} className="bg-black rounded-full px-4 py-2 text-cust-white">
+                <button
+                  onClick={deleteAcc}
+                  className="bg-black rounded-full px-4 py-2 text-cust-white"
+                >
                   Delete Acount
                 </button>
               </div>
